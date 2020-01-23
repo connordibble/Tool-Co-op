@@ -1,0 +1,79 @@
+﻿Tyler Green
+Mark Yamane
+Karsten Boettcher
+Connor Dibble
+Requirements for Project
+1. Decide what framework/language to use
+2. Create a tool 
+   1. Name
+   2. Picture
+   3. count
+3. Tab to display all tools
+4. Display whether tool is available or not
+5. When checking out tool enter the name of person checking it out, date, and due date
+6. Search for a tool
+7. Data base for the tools
+8. Create shopping cart
+9. Only allow a certain number of tools to be checked out
+10.  Login for the clerk
+11.  Tab for available tools
+12.  Tab for unavailable tools w/ name of person who checked it out and due date
+13.  Style the website
+14.  Click on a tool and take you to a page with information about the tool and way to check it in or out
+15.  Overdue tools tab
+16.  Refactor
+17.  Unit tests
+18.  Delete a tool
+19.  History of past transactions
+
+
+Must
+* Tab to display all tools
+* Data base for the tools
+* Create a tool
+* Display whether tool is available or not
+* Decide which framework to use
+* When checking out tool enter the name of person checking it out, date, and due date
+* Delete a tool
+Should
+* Overdue tools tab
+* Style the Website
+* Login for clerk
+* Tab for available tools
+* Tab for unavailable tools
+* Page for each tool
+* Overdue tools tab
+* Refactor
+* Unit Tests
+Could
+* Search for a tool
+* Shopping cart
+Won’t
+* History of past transactions
+
+
+
+
+Furps
+1. Decide what framework/language to use - Performance / Supportability
+2. Create a tool - Functionality / Supportability
+   1. Name
+   2. Picture
+   3. Count
+3. Tab to display all tools - Usability
+4. Display whether tool is available or not - Functionality / Usability
+5. When checking out tool enter the name of person checking it out, date, and due date - Reliability / Functionality
+6. Search for a tool - Functionality
+7. Data base for the tools - Functionality / Performance
+8. Create shopping cart - Functionality / Usability
+9. Only allow a certain number of tools to be checked out - Functionality
+10.  Login for the clerk - Functionality / Reliability
+11.  Tab for available tools - Usability
+12.  Tab for unavailable tools w/ name of person who checked it out and due date - Usability
+13.  Style the website - Usability
+14.  Click on a tool and take you to a page with information about the tool and way to check it in or out - Usability / Functionality
+15.  Overdue tools tab - Usability
+16.  Refactor - Supportability
+17.  Unit tests - Supportability
+18.  Delete a tool - Supportability
+19.  History of past transactions - Functionality
