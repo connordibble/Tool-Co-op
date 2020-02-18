@@ -12,6 +12,31 @@
 </head>
 
 <body>
+  <header class="fixed-top">
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">ToolShop</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-items">
+          <li class="nav-item">
+            <a class="nav-link" href="#">All Tools</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Available Tools</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Checked out Tools</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Overdue Tools</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">History</a>
+          </li>
+          </ul>
+      </div>
+    </nav>
+  </header>
+    
   <h1>List of Tools</h1>
 {% for category in tools_list %}
   <br>
