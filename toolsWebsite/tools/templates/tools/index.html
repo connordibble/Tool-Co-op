@@ -1,0 +1,24 @@
+<!doctype html>
+
+{% load static %}
+<html lang="zxx">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Index</title>
+  <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
+
+</head>
+
+<body>
+  <h1>List of Tools</h1>
+{% for category in tools_list %}
+  <br>
+  <h4 style="font-size: large">{{ category.type }}</h4>
+  <p style="font-size: large">Total Available: {{ category.available }}</p>
+  <p style="font-size: large">Checked Out: {{ category.unavailable }}</p>
+  <p style="font-size: large">Price without membership: ${{ category.price }}.00</p>
+{% endfor %}
+</body>
+</html>
