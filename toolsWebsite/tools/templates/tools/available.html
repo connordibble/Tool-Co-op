@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Index</title>
+  <title>Available</title>
   <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
 
 </head>
@@ -37,13 +37,12 @@
     </nav>
   </header>
     
-  <h1>List of Tools</h1>
-{% for category in tools_list %}
+  <h1>List of Available Tools</h1>
+{% for tool in available_tools %}
   <br>
-  <h4 style="font-size: large">{{ category.type }}</h4>
-  <p style="font-size: large">Total Available: {{ category.available }}</p>
-  <p style="font-size: large">Checked Out: {{ category.unavailable }}</p>
-  <p style="font-size: large">Price without membership: ${{ category.price }}.00</p>
+  <h4 style="font-size: large">{{ tool.type }}</h4>
+  <p style="font-size: large">Total: {{ tool.available }}</p>
+  <p style="font-size: large">Price without membership: ${{ tool.price }}.00</p>
 {% endfor %}
 </body>
 </html>

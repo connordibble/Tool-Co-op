@@ -13,6 +13,15 @@ def index(request):
 
     }
     return render(request, 'tools/index.html', context)
+    
+def availableTools(request):
+    tools_list = ToolCategory.objects.all()
+    list = []
+    for tool in tools_list:
+        if tool.available > 0:
+            list.append(tool)
+    context = { "available_tools" : list }
+    return render(request, 'tools/available.html', context)
 
 
 def init(request):
