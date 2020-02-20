@@ -38,12 +38,17 @@
   </header>
     
   <h1>List of Tools</h1>
-{% for category in tools_list %}
-  <br>
-  <h4 style="font-size: large">{{ category.type }}</h4>
-  <p style="font-size: large">Total Available: {{ category.available }}</p>
-  <p style="font-size: large">Checked Out: {{ category.unavailable }}</p>
-  <p style="font-size: large">Price without membership: ${{ category.price }}.00</p>
-{% endfor %}
+{% if tools_list %}
+  {% for category in tools_list %}
+    <br>
+    <h4 style="font-size: large">{{ category.type }}</h4>
+    <p style="font-size: large">Total Available: {{ category.available }}</p>
+    <p style="font-size: large">Checked Out: {{ category.unavailable }}</p>
+    <p style="font-size: large">Price without membership: ${{ category.price }}.00</p>
+  {% endfor %}
+
+{% else %}
+  <p>No tools are in the database</p>
+{% endif %}
 </body>
 </html>

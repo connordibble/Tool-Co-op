@@ -38,11 +38,17 @@
   </header>
     
   <h1>List of Available Tools</h1>
-{% for tool in available_tools %}
-  <br>
-  <h4 style="font-size: large">{{ tool.type }}</h4>
-  <p style="font-size: large">Total: {{ tool.available }}</p>
-  <p style="font-size: large">Price without membership: ${{ tool.price }}.00</p>
-{% endfor %}
+
+{% if available_tools %}
+  {% for tool in available_tools %}
+    <br>
+    <h4 style="font-size: large">{{ tool.type }}</h4>
+    <p style="font-size: large">Total: {{ tool.available }}</p>
+    <p style="font-size: large">Price without membership: ${{ tool.price }}.00</p>
+  {% endfor %}
+
+{% else %}
+  <p> There are no available tools </p>
+{% endif %}
 </body>
 </html>
