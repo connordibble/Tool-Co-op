@@ -16,6 +16,7 @@ Scrum Board
 * Karsten Boettcher
    * Updated Risk Analysis - Feb. 13, 2020
    * Updated Requirements Definition - Feb. 13, 2020
+   * Created class diagram - Feb. 21, 2020
 * Mark Yamane
    * Updating Requirements Definition - Feb 10, 2020
    * Add the Users and their Goals - Feb 18, 2020
