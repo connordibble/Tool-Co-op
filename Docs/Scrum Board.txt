@@ -1,4 +1,5 @@
 Scrum Board
+MILESTONE 2
 * Connor Dibble
    * Updated Risk Analysis (Summary, Requirements, Future Requirements) - Feb 10, 2020
    * Updated Requirements Definition - Feb 10 2020
@@ -22,3 +23,13 @@ Scrum Board
    * Updating Requirements Definition - Feb 10, 2020
    * Add the Users and their Goals - Feb 18, 2020
    * Pen and paper prototype - Feb 18, 2020
+   
+   MILESTONE 3
+    SPRINT 1 March 8 - 14
+      Karsten Boettcher - Scrum Master
+      
+      Tyler Green
+      
+      Mark Yamane 
+      
+      Connor Dibble
