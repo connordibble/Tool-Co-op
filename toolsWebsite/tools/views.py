@@ -14,6 +14,9 @@ def index(request):
     }
     return render(request, 'tools/index.html', context)
     
+def contact(request):
+    return render(request, 'tools/contact.html')
+    
 def availableTools(request):
     tools_list = ToolCategory.objects.all()
     list = []
