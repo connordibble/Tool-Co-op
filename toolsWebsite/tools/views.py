@@ -14,6 +14,16 @@ def index(request):
     }
     return render(request, 'tools/index.html', context)
     
+def checkedOut(request):
+    tools_list = ToolCategory.objects.all()
+    list = []
+    for tool in tools_list:
+        print(tool.unavailable)
+        if tool.unavailable > 0:
+            list.append(tool)
+    context = { "checkedOut_tools" : list }
+    return render(request, 'tools/checkedOut.html', context)
+    
 def availableTools(request):
     tools_list = ToolCategory.objects.all()
     list = []
