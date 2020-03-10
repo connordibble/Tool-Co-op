@@ -26,10 +26,11 @@ MILESTONE 2
    
    MILESTONE 3
     SPRINT 1 March 8 - 14
-      Karsten Boettcher - Scrum Master
+      *Karsten Boettcher - Scrum Master
       
-      Tyler Green
+      *Tyler Green
       
-      Mark Yamane 
+      *Mark Yamane 
       
-      Connor Dibble
+      *Connor Dibble
+        *Updated tool model to include picture.
