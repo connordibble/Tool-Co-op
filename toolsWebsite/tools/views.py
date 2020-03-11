@@ -13,6 +13,11 @@ def index(request):
 
     }
     return render(request, 'tools/index.html', context)
+
+  
+def contact(request):
+    return render(request, 'tools/contact.html')
+    
     
 def checkedOut(request):
     tools_list = ToolCategory.objects.all()
@@ -25,6 +30,7 @@ def checkedOut(request):
     context = { "checkedOut_tools" : list }
     return render(request, 'tools/checkedOut.html', context)
 
+  
 def availableTools(request):
     tools_list = ToolCategory.objects.all()
     list = []
@@ -34,7 +40,7 @@ def availableTools(request):
     context = {"available_tools": list}
     return render(request, 'tools/available.html', context)
 
-
+  
 def init(request):
     nuke(request)
     categories = ['hammer','wrench','screwdriver','level','drill']
