@@ -24,25 +24,37 @@ def checkedOut(request):
                 list.append(d)
     context = { "checkedOut_tools" : list }
     return render(request, 'tools/checkedOut.html', context)
-    
+
 def availableTools(request):
     tools_list = ToolCategory.objects.all()
     list = []
     for tool in tools_list:
         if tool.available > 0:
             list.append(tool)
-    context = { "available_tools" : list }
+    context = {"available_tools": list}
     return render(request, 'tools/available.html', context)
 
 
 def init(request):
     nuke(request)
-    categories = ['hammer', 'wrench', 'screwdriver', 'drill']
-    for i in range(4):
+    categories = ['hammer','wrench','screwdriver','level','drill']
+    images = {
+        'hammer': 'https://www.montessoriservices.com/media/catalog/product/cache/1/thumbnail/550x'
+                  '/9df78eab33525d08d6e5fb8d27136e95/v/5/v508_hammer.jpg',
+        'wrench': 'https://shop.harborfreight.com/media/catalog/product/cache/1/image'
+                  '/9df78eab33525d08d6e5fb8d27136e95/6/7/67150_W3.jpg',
+        'screwdriver': 'https://images-na.ssl-images-amazon.com/images/I/51kttYf5GFL._AC_SX569_.jpg',
+        'level': 'https://shop.harborfreight.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95'
+                 '/i/m/image_10922.jpg',
+        'drill': 'https://www.dewalt.com/NA/product/images/3000x3000x96/DCD708B/DCD708B_1.jpg',
+
+    }
+    for i in range(len(categories)):
         tool = ToolCategory(type=categories[i],
                             available=randint(1, 10),
                             unavailable=randint(0, 10),
-                            price=randint(5,10))
+                            price=randint(5, 10),
+                            tool_image=images.get(categories[i]))
         tool.save()
         for j in range(tool.unavailable):
             due = DueDates()
