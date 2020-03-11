@@ -2,8 +2,8 @@ from random import randint
 from django.shortcuts import render
 from django.shortcuts import redirect
 
-from .models import ToolCategory
-
+from .models import ToolCategory, DueDates
+from datetime import date, datetime
 
 def index(request):
     tools_list = ToolCategory.objects.all()
@@ -17,10 +17,11 @@ def index(request):
 def checkedOut(request):
     tools_list = ToolCategory.objects.all()
     list = []
+    due = DueDates.objects.order_by('-date_due')
     for tool in tools_list:
-        print(tool.unavailable)
-        if tool.unavailable > 0:
-            list.append(tool)
+        for d in due:
+            if tool == d.toolCategory:
+                list.append(d)
     context = { "checkedOut_tools" : list }
     return render(request, 'tools/checkedOut.html', context)
     
@@ -43,6 +44,13 @@ def init(request):
                             unavailable=randint(0, 10),
                             price=randint(5,10))
         tool.save()
+        for j in range(tool.unavailable):
+            due = DueDates()
+            due.toolCategory = tool
+            due.date_bought = datetime(2019,10,8)
+            due.date_due = date.today()
+            due.buyer = "Tyler"
+            due.save()
 
     return redirect('index')
 

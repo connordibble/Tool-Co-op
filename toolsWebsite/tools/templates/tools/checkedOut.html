@@ -82,9 +82,11 @@
     <h1>Checked out Tools</h1>
     {% if checkedOut_tools %}
     {% for tool in checkedOut_tools %}
-    <br>
-    <h4 style="font-size: large">{{ tool.type }}</h4>
-    <p style="font-size: large">Checked Out: {{ tool.unavailable }}</p>
+        <br>
+        <h4 style="font-size: large">{{ tool.toolCategory.type }}</h4>
+        <p>bought: {{ tool.date_bought }}</p>
+        <p>due: {{ tool.date_due }}</p>
+        <p>buyer: {{ tool.buyer }}</p>
     {% endfor %}
 
     {% else %}
