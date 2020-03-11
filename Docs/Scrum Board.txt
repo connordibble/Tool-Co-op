@@ -33,4 +33,5 @@ MILESTONE 2
       *Mark Yamane 
       
       *Connor Dibble
-        *Updated tool model to include picture.
+        *Updated tool model to include picture - Mar 10, 2020
+        *Reviewed contact us page - Mar 11, 2020
