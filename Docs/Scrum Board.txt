@@ -15,6 +15,10 @@ MILESTONE 2
    * Add simple NavBar to the top of the page - Feb 17, 2020
    * Add Scrum Board to Github - Feb 20, 2020
    * Add available tools tab - Feb 20, 2020
+   * Add Carousel to front page - March 10, 2020
+   * Add Contact Us page with google maps - March 10, 2020
+   * Add Checked out tools page - March 10, 2020
+   * Add sort of styled Navbar/Footer - March 10, 2020
 * Karsten Boettcher
    * Updated Risk Analysis - Feb. 13, 2020
    * Updated Requirements Definition - Feb. 13, 2020
