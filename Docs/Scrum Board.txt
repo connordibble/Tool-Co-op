@@ -19,6 +19,7 @@ MILESTONE 2
    * Add Contact Us page with google maps - March 10, 2020
    * Add Checked out tools page - March 10, 2020
    * Add sort of styled Navbar/Footer - March 10, 2020
+   * Add Project Page Tab w/out content - March 12, 2020
 * Karsten Boettcher
    * Updated Risk Analysis - Feb. 13, 2020
    * Updated Requirements Definition - Feb. 13, 2020
