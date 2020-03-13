@@ -16,7 +16,8 @@
   <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
 </head>
 
-<body>
+<body class="d-flex flex-column">
+
   <header class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Tool Icon</a>
@@ -77,27 +78,15 @@
       </div>
     </nav>
   </header>
-    
-<main role="main">
-    <br>
-    <br>
-  <h1>List of Available Tools</h1>
 
-{% if available_tools %}
-  {% for tool in available_tools %}
+  <main role="main">
     <br>
-    <h4 style="font-size: large">{{ tool.type }}</h4>
-    <p style="font-size: large">Total: {{ tool.available }}</p>
-    <p style="font-size: large">Price without membership: ${{ tool.price }}.00</p>
-    <img width="5%" height="5%" src="{{ tool.tool_image}}"/>
-  {% endfor %}
-
-{% else %}
-  <p> There are no available tools </p>
-{% endif %}
-</main>
+    <br>
+    <h1>Project Page</h1>
+  </main>
     
-    <!-- Footer -->
+    
+<!-- Footer -->
   <footer class="footer navbar-dark bg-dark mt-auto py-3">
   <!-- Footer Elements -->
   <div class="container text-center">
@@ -117,4 +106,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
