@@ -9,4 +9,5 @@ urlpatterns = [
     path('checkedOut', views.checkedOut, name='checkedOut'),
     path('init', views.init, name='init'),
     path('available', views.availableTools, name='available'),
+    path('project', views.project, name='project'),
 ]

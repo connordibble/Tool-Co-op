@@ -18,6 +18,9 @@ def index(request):
 def contact(request):
     return render(request, 'tools/contact.html')
     
+def project(request):
+    return render(request, 'tools/project.html')
+    
     
 def checkedOut(request):
     tools_list = ToolCategory.objects.all()
