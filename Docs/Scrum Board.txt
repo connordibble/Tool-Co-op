@@ -30,11 +30,17 @@ MILESTONE 2
    * Pen and paper prototype - Feb 18, 2020
    
 MILESTONE 3
-  SPRINT 1 March 8 - 14
-    Karsten Boettcher - Scrum Master
-     
-    Tyler Green
+   MILESTONE 3
+    SPRINT 1 March 8 - 14
+      *Karsten Boettcher - Scrum Master
       
-    Mark Yamane 
+      *Tyler Green
       
-    Connor Dibble
+      *Mark Yamane 
+      
+      *Connor Dibble
+        *Updated tool model to include picture - Mar 10, 2020
+        *Reviewed contact us page - Mar 11, 2020
+        *Made shopping cart prototype and added functionality for cart to update checked out page - Mar 12, 2020
+        *Reviewed project page tab - Mar 13, 2020
+        
