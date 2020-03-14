@@ -31,7 +31,7 @@ def checkedOut(request):
             if tool == d.toolCategory:
                 list.append(d)
     context = { "checkedOut_tools" : list }
-    return render(request, 'tools/checkedOut.html', context)
+    return render(request, 'tools/checked_out.html', context)
 
   
 def availableTools(request):

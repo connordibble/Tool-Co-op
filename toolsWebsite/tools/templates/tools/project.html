@@ -2,109 +2,90 @@
 
 {% load static %}
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <!-- The viewport meta tag allows a device to make use of the responsive features of bootstrap.  Without this tag an iPhone for instance will view the file as if it were running on a PC -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
+    <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
+    <title>Projects</title>
+  </head>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
-  <title>All Tools</title>
-  <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
-</head>
-
-<body class="d-flex flex-column">
-
-  <header class="fixed-top">
+  <body class="d-flex flex-column">
+    <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Tool Icon</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/tools/index">All Tools<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/tools/available">Available Tools<span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/tools/checkedOut">Checked out Tools<span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Overdue Tools<span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/tools/project">Projects<span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">History<span class="sr-only"></span></a>
-          </li>
-        </ul>
-        <ul class="navbar-nav mr-left">
-          <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Search</button>
-            </form>
+      <div class="container">
+        <a class="navbar-brand" href="/tools/">Tool Co-op</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-
-              <button class="btn btn-outline-info my-2 my-sm-0 " type="submit">Log In</button>
+              <a class="nav-link" href="/tools/">All Tools <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tools
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/tools/available">Available</a>
+                <a class="dropdown-item" href="/tools/checked_out">Checked Out</a>
+                <a class="dropdown-item" href="#">Overdue</a>
+              </div>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/tools/project">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">History</a>
             </li>
             <li class="nav-item">
               <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown no-arrow">
                   <a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fa fa-cart-arrow-down"></i>
-						</a>
+                    <i class="fa fa-cart-arrow-down"></i>
+                  </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
                     <div id="cartDropdownItems"></div>
                     <a href="/checkout">
-								<button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
-									Check Out
-								</button>
-							</a>
+                      <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
+                        Check Out
+                      </button>
+                    </a>
                   </div>
                 </li>
               </ul>
             </li>
-        </ul>
-
+          </ul>
+        </div>
       </div>
     </nav>
-  </header>
+    <!-- Navbar End -->
 
-  <main role="main">
-    <br>
-    <br>
-    <h1>Project Page</h1>
-  </main>
-    
-    
-<!-- Footer -->
-  <footer class="footer navbar-dark bg-dark mt-auto py-3">
-  <!-- Footer Elements -->
-  <div class="container text-center">
-    <h5 class="mb-1 text-muted">Have Questions? <a class="btn btn-outline-info my-2 my-sm-0 " href="/tools/contact">Contact Us!</a></h5>
-  </div>
-  <!-- Footer Elements -->
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3 text-muted">© 2020 Copyright
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
+    <main role="main">
+      <div class="container">
+        <br>
+        <h1>Project Page</h1>
+      </div>
+    </main>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+    <!-- Footer Start -->
+    <footer class="footer navbar-dark bg-dark mt-auto py-3">
+      <div class="container text-center">
+        <h5 class="mb-1 text-muted">Have Questions? <a class="btn btn-outline-info my-2 my-sm-0 " href="/tools/contact">Contact Us!</a></h5>
+      </div>
+      <div class="footer-copyright text-center py-3 text-muted">© 2020 Copyright</div>
+    </footer>
+    <!-- Footer End -->
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
