@@ -53,10 +53,7 @@ def create(request):
     t.available = request.POST['quantity']
     t.unavailable = 0
     t.price = request.POST['price']
-    image = request.FILES['img']
-    handle_uploaded_file(image)
-    t.tool_image = 'https://www.dewalt.com/NA/product/images/3000x3000x96/DCD708B/DCD708B_1.jpg'
-    print(t.tool_image.url)
+    t.tool_image = request.POST['img']
     t.save()
     return redirect('index')
     
