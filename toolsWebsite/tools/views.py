@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 
 from .models import ToolCategory, DueDates
 from datetime import date, datetime
+import os
 
 def index(request):
     tools_list = ToolCategory.objects.all()
@@ -43,6 +44,26 @@ def availableTools(request):
     context = {"available_tools": list}
     return render(request, 'tools/available.html', context)
 
+def create_category(request):
+    return render(request, 'tools/create_category.html')
+    
+def create(request):
+    t = ToolCategory()
+    t.type = request.POST['name']
+    t.available = request.POST['quantity']
+    t.unavailable = 0
+    t.price = request.POST['price']
+    image = request.FILES['img']
+    handle_uploaded_file(image)
+    t.tool_image = 'https://www.dewalt.com/NA/product/images/3000x3000x96/DCD708B/DCD708B_1.jpg'
+    print(t.tool_image.url)
+    t.save()
+    return redirect('index')
+    
+def handle_uploaded_file(f):
+    with open(f"tools/static/images/{f}", 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
   
 def init(request):
     nuke(request)
@@ -79,3 +100,7 @@ def init(request):
 def nuke(request):
     for categories in ToolCategory.objects.all():
         categories.delete()
+
+def nuke_it(request):
+    nuke(request)
+    return redirect('index')

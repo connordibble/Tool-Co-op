@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
     <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
-    <title>Available Tools</title>
+    <title>Create</title>
   </head>
 
   <body class="d-flex flex-column">
@@ -24,15 +24,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/tools/">All Tools <span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">All Tools <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Tools
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Available</a>
+                <a class="dropdown-item" href="/tools/available">Available</a>
                 <a class="dropdown-item" href="/tools/checked_out">Checked Out</a>
                 <a class="dropdown-item" href="#">Overdue</a>
               </div>
@@ -67,25 +67,21 @@
     <!-- Navbar End -->
 
     <main role="main">
-      <br>
       <div class="container">
-        <h1>List of Available Tools</h1>
-        <div class="tool-grid">
-          {% if available_tools %}
-            {% for tool in available_tools %}
-              <div class="tool-container">
-                <img height="150px" width="auto" src="{{ tool.tool_image }}"/>
-                <h4>{{ tool.type }}</h4>
-                Total: {{ tool.available }}
-                <br>
-                Rental fee: ${{ tool.price }}
-              </div>
-            {% endfor %}
-
-          {% else %}
-            <p> There are no available tools. </p>
-          {% endif %}
-        </div>
+        <br>
+        <h1>Create Tool Category</h1>
+        <form action="/tools/create" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="form_name">Tool Name</label>
+            <input id="form_name" type="text" name="name" class="form-control" placeholder="Tool Name" required="required" data-error="Tool name is required.">
+            <label for="form_name">Quantity</label>
+            <input id="form_name" type="number" name="quantity" class="form-control" placeholder="Quantity" required="required" data-error="Quantity is required.">
+            <label for="form_name">Price</label>
+            <input id="form_name" type="number" min="1" step="any" name="price" class="form-control" placeholder="Price" required="required" data-error="Price is required.">
+            <input type="submit" class="btn btn-success btn-send" value="Create Tool Category">
+            <label for="img">Select image:</label>
+            <input type="file" id="img" name="img" accept="image/*">
+        </form>
       </div>
     </main>
 
