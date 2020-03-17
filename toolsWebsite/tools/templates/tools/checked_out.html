@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
     <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
-    <title>Available Tools</title>
+    <title>Checked Out Tools</title>
   </head>
 
   <body class="d-flex flex-column">
-    <!-- Navbar Start -->
+     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="/tools/">Tool Co-op</a>
@@ -32,8 +32,8 @@
                 Tools
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Available</a>
-                <a class="dropdown-item" href="/tools/checked_out">Checked Out</a>
+                <a class="dropdown-item" href="/tools/available">Available</a>
+                <a class="dropdown-item" href="#">Checked Out</a>
                 <a class="dropdown-item" href="#">Overdue</a>
               </div>
             </li>
@@ -67,23 +67,26 @@
     <!-- Navbar End -->
 
     <main role="main">
-      <br>
       <div class="container">
-        <h1>List of Available Tools</h1>
+        <br>
+        <h1>Checked out Tools</h1>
+
         <div class="tool-grid">
-          {% if available_tools %}
-            {% for tool in available_tools %}
+          {% if checkedOut_tools %}
+            {% for tool in checkedOut_tools %}
               <div class="tool-container">
-                <img height="150px" width="auto" src="{{ tool.tool_image }}"/>
-                <h4>{{ tool.type }}</h4>
-                Total: {{ tool.available }}
+                <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image}}"/>
+                <h4>{{ tool.toolCategory.type }}</h4>
+                Rented: {{ tool.date_bought }}
                 <br>
-                Rental fee: ${{ tool.price }}
+                Due: {{ tool.date_due }}
+                <br>
+                Buyer: {{ tool.buyer }}
               </div>
             {% endfor %}
 
           {% else %}
-            <p> There are no available tools. </p>
+              <p>No tools are checked out.</p>
           {% endif %}
         </div>
       </div>
