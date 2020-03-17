@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
     <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
-    <title>Checked Out Tools</title>
+    <title>Overdue</title>
   </head>
 
   <body class="d-flex flex-column">
-     <!-- Navbar Start -->
+    <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="/tools/">Tool Co-op</a>
@@ -24,8 +24,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/tools/">All Tools <span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">All Tools <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,25 +69,24 @@
     <main role="main">
       <div class="container">
         <br>
-        <h1>Checked out Tools</h1>
-
+        <h1>Overdue Tools</h1>
         <div class="tool-grid">
-          {% if checkedOut_tools %}
-            {% for tool in checkedOut_tools %}
-              <div class="tool-container">
-                <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image}}"/>
-                <h4>{{ tool.toolCategory.type }}</h4>
-                Rented: {{ tool.date_bought }}
-                <br>
-                Due: {{ tool.date_due }}
-                <br>
-                Buyer: {{ tool.buyer }}
-              </div>
-            {% endfor %}
+        {% if overdue_tools %}
+          {% for tool in overdue_tools %}
+            <div class="tool-container">
+              <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image }}"/>
+              <h4>{{ tool.toolCategory.type }}</h4>
+              Customer: {{ tool.buyer }}
+              <br>
+              Date Bought: {{ tool.date_bought }}
+              <br>
+              Date Due: {{ tool.date_due }}
+            </div>
+          {% endfor %}
 
-          {% else %}
-              <p>No tools are checked out.</p>
-          {% endif %}
+        {% else %}
+            <p>No overdue tools :)</p>
+        {% endif %}
         </div>
       </div>
     </main>
