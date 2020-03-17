@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from .models import ToolCategory, DueDates
-from datetime import date, datetime
+from django.utils import timezone
+import datetime
 import os
 
 def index(request):
@@ -27,8 +28,8 @@ def checkedOut(request):
     tools_list = ToolCategory.objects.all()
     list = []
     due = DueDates.objects.order_by('-date_due')
-    for tool in tools_list:
-        for d in due:
+    for d in due:
+        for tool in tools_list:
             if tool == d.toolCategory:
                 list.append(d)
     context = { "checkedOut_tools" : list }
@@ -47,6 +48,15 @@ def availableTools(request):
 def create_category(request):
     return render(request, 'tools/create_category.html')
     
+def overdue(request):
+    due_dates = DueDates.objects.order_by('-date_due')
+    list = []
+    for tool in reversed(due_dates):
+        if tool.date_due < timezone.now():
+            list.append(tool)
+    context = {"overdue_tools": list}
+    return render(request, 'tools/overdue.html', context)
+
 def create(request):
     t = ToolCategory()
     t.type = request.POST['name']
@@ -86,8 +96,8 @@ def init(request):
         for j in range(tool.unavailable):
             due = DueDates()
             due.toolCategory = tool
-            due.date_bought = datetime(2019,10,8)
-            due.date_due = date.today()
+            due.date_bought = datetime.datetime(2019,randint(1, 12),randint(1, 28))
+            due.date_due = datetime.datetime(2020,randint(1, 12),randint(1, 28))
             due.buyer = "Tyler"
             due.save()
 
