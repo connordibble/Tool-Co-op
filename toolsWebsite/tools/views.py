@@ -96,8 +96,8 @@ def init(request):
         for j in range(tool.unavailable):
             due = DueDates()
             due.toolCategory = tool
-            due.date_bought = datetime.datetime(2019,randint(1, 12),8)
-            due.date_due = datetime.datetime(2020,1,randint(1, 31))
+            due.date_bought = datetime.datetime(2019,randint(1, 12),randint(1, 28))
+            due.date_due = datetime.datetime(2020,randint(1, 12),randint(1, 28))
             due.buyer = "Tyler"
             due.save()
 
