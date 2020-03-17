@@ -44,6 +44,9 @@ MILESTONE 3
       *Connor Dibble
         *Updated tool model to include picture - Mar 10, 2020
         *Reviewed contact us page - Mar 11, 2020
-        *Made shopping cart prototype and added functionality for cart to update checked out page - Mar 12, 2020
+        *Made shopping cart prototype branch - Mar 12, 2020
+	*Added functionality for cart to update checked out page - Mar 12, 2020
         *Reviewed project page tab - Mar 13, 2020
+	*Reviewed Overdue Tools Tab - Mar 17, 2020
+	*Requested changes for tool logo - Mar 17, 2020
         
