@@ -38,6 +38,8 @@ MILESTONE 3
    	* Add Checked out tools page - March 10, 2020
    	* Add sort of styled Navbar/Footer - March 10, 2020
    	* Add Project Page Tab w/out content - March 12, 2020
+	* Add Create Tool button/page - March 14, 2020
+	* Add Overdue Tools Tab - March 16, 2020
       
       *Mark Yamane 
       
