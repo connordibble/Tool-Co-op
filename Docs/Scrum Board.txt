@@ -40,6 +40,7 @@ MILESTONE 3
    	* Add Project Page Tab w/out content - March 12, 2020
 	* Add Create Tool button/page - March 14, 2020
 	* Add Overdue Tools Tab - March 16, 2020
+	* Add ability to Edit a tool - March 19, 2020
       
       *Mark Yamane 
       
