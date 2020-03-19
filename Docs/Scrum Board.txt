@@ -41,6 +41,7 @@ MILESTONE 3
 	* Add Create Tool button/page - March 14, 2020
 	* Add Overdue Tools Tab - March 16, 2020
 	* Add ability to Edit a tool - March 19, 2020
+	* Review Shopping Cart PR - March 19, 2020
       
       *Mark Yamane 
       
