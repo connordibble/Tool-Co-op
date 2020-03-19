@@ -103,6 +103,7 @@
         {% if tools_list %}
           {% for category in tools_list %}
             <div class="tool-container">
+              <a href="{% url 'toolpage' category.id %}">
               <img height="150px" width="auto" src="{{ category.tool_image }}"/>
               <h4>{{ category.type }}</h4>
               Available: {{ category.available }}
@@ -110,6 +111,7 @@
               Checked Out: {{ category.unavailable }}
               <br>
               Rental fee: ${{ category.price }}
+              </a>
             </div>
           {% endfor %}
 
