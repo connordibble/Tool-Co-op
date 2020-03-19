@@ -74,13 +74,11 @@
           {% if available_tools %}
             {% for tool in available_tools %}
               <div class="tool-container">
-                <a href="{% url 'tools:toolpage' tool.id %}">
                 <img height="150px" width="auto" src="{{ tool.tool_image }}"/>
                 <h4>{{ tool.type }}</h4>
                 Total: {{ tool.available }}
                 <br>
                 Rental fee: ${{ tool.price }}
-                </a>
               </div>
             {% endfor %}
 
