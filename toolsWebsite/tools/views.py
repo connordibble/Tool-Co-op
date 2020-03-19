@@ -1,6 +1,5 @@
 from random import randint
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import ToolCategory, DueDates
 from django.utils import timezone
@@ -23,6 +22,24 @@ def contact(request):
 def project(request):
     return render(request, 'tools/project.html')
     
+def toolpage(request, tool_id):
+    tool_category = get_object_or_404(ToolCategory, pk=tool_id)
+    context = {'tool' : tool_category}
+    return render(request, 'tools/toolpage.html', context)
+
+def delete_tool(request, tool_id):
+    tool_category = get_object_or_404(ToolCategory, pk=tool_id)
+    tool_category.delete()
+    return redirect('index')
+
+def edit_tool(request, tool_id):
+    t = get_object_or_404(ToolCategory, pk=tool_id)
+    t.type = request.POST['name']
+    t.available = request.POST['quantity']
+    t.price = request.POST['price']
+    t.tool_image = request.POST['img']
+    t.save()
+    return redirect('index')
     
 def checkedOut(request):
     tools_list = ToolCategory.objects.all()
