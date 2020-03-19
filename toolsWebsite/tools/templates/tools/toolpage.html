@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
     <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
-    <title>Available Tools</title>
+    <title>Edit Tool</title>
   </head>
 
   <body class="d-flex flex-column">
@@ -24,7 +24,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="/tools/">All Tools <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
@@ -67,27 +67,47 @@
     <!-- Navbar End -->
 
     <main role="main">
-      <br>
       <div class="container">
-        <h1>List of Available Tools</h1>
-        <div class="tool-grid">
-          {% if available_tools %}
-            {% for tool in available_tools %}
-              <div class="tool-container">
-                <a href="{% url 'tools:toolpage' tool.id %}">
-                <img height="150px" width="auto" src="{{ tool.tool_image }}"/>
-                <h4>{{ tool.type }}</h4>
-                Total: {{ tool.available }}
-                <br>
-                Rental fee: ${{ tool.price }}
-                </a>
-              </div>
-            {% endfor %}
-
-          {% else %}
-            <p> There are no available tools. </p>
-          {% endif %}
+        <br>
+        <h1>{{tool.type}}</h1>
+        <img height="300px" width="auto" src="{{ tool.tool_image }}"/>
+        <p>Available: {{tool.available}}</p>
+        <p>Checked out: {{tool.unavailable}}</p>
+        <p>Price: ${{tool.price}}</p>
+        <button id="editbutton" class="btn btn-outline-secondary" onclick="opencloseForm()">Edit</button>
+        <a href="{% url 'delete_tool' tool.id %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+        <br>
+        <div class="form-popup" id="editForm">
+          <form action="{% url 'edit_tool' tool.id %}" method="post" class="form-container">
+            <h1>Edit Tool</h1>
+            {% csrf_token %}
+            <label for="form_name">Tool Name</label>
+            <input id="form_name" type="text" name="name" class="form-control" placeholder="Tool Name" value="{{tool.type}}" required="required" data-error="Tool name is required.">
+            <label for="form_name">Quantity</label>
+            <input id="form_name" type="number" name="quantity" class="form-control" placeholder="Quantity" value="{{tool.available}}" required="required" data-error="Quantity is required.">
+            <label for="form_name">Price</label>
+            <input id="form_name" type="number" min="1" step="any" name="price" class="form-control" placeholder="Price" value="{{tool.price}}" required="required" data-error="Price is required.">
+            <label for="form_name">Image URL</label>
+            <input id="form_name" type="text" name="img" class="form-control" placeholder="Image URL" value="{{tool.tool_image}}" required="required" data-error="Image is required.">
+            <input type="submit" class="btn btn-success btn-send" value="Submit Edit">
+          </form>
         </div>
+
+        <script>
+        let open = true;
+        document.getElementById("editForm").style.display = "none";
+        function opencloseForm() {
+            if (open) {
+                document.getElementById("editForm").style.display = "block";
+                document.getElementById("editbutton").textContent = "Close Edit";
+                open = false;
+            } else {
+                document.getElementById("editForm").style.display = "none";
+                document.getElementById("editbutton").textContent = "Edit";
+                open = true
+            }
+        }
+        </script>
       </div>
     </main>
 
