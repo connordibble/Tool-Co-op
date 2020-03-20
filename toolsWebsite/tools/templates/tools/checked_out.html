@@ -77,9 +77,9 @@
               <div class="tool-container">
                 <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image}}"/>
                 <h4>{{ tool.toolCategory.type }}</h4>
-                Rented: {{ tool.date_bought }}
+                Rented: {{ tool.date_bought|date:"M d, Y" }}
                 <br>
-                Due: {{ tool.date_due }}
+                Due: {{ tool.date_due|date:"M d, Y" }}
                 <br>
                 Buyer: {{ tool.buyer }}
               </div>

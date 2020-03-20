@@ -79,16 +79,20 @@
         <br>
         <div class="form-popup" id="editForm">
           <form action="{% url 'edit_tool' tool.id %}" method="post" class="form-container">
-            <h1>Edit Tool</h1>
+            <h2>Edit Tool</h2>
             {% csrf_token %}
             <label for="form_name">Tool Name</label>
             <input id="form_name" type="text" name="name" class="form-control" placeholder="Tool Name" value="{{tool.type}}" required="required" data-error="Tool name is required.">
+            <br>
             <label for="form_name">Quantity</label>
             <input id="form_name" type="number" name="quantity" class="form-control" placeholder="Quantity" value="{{tool.available}}" required="required" data-error="Quantity is required.">
+              <br>
             <label for="form_name">Price</label>
             <input id="form_name" type="number" min="1" step="any" name="price" class="form-control" placeholder="Price" value="{{tool.price}}" required="required" data-error="Price is required.">
+              <br>
             <label for="form_name">Image URL</label>
             <input id="form_name" type="text" name="img" class="form-control" placeholder="Image URL" value="{{tool.tool_image}}" required="required" data-error="Image is required.">
+              <br>
             <input type="submit" class="btn btn-success btn-send" value="Submit Edit">
           </form>
         </div>
