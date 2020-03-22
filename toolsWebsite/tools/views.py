@@ -44,7 +44,7 @@ def edit_tool(request, tool_id):
 def checkedOut(request):
     tools_list = ToolCategory.objects.all()
     list = []
-    due = DueDates.objects.order_by('-date_due')
+    due = DueDates.objects.order_by('-date_bought')
     for d in due:
         for tool in tools_list:
             if tool == d.toolCategory:

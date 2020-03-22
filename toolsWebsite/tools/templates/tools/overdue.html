@@ -78,9 +78,9 @@
               <h4>{{ tool.toolCategory.type }}</h4>
               Customer: {{ tool.buyer }}
               <br>
-              Date Bought: {{ tool.date_bought }}
+              Date Bought: {{ tool.date_bought|date:"M d, Y" }}
               <br>
-              Date Due: {{ tool.date_due }}
+              Date Due: {{ tool.date_due|date:"M d, Y" }}
             </div>
           {% endfor %}
 
