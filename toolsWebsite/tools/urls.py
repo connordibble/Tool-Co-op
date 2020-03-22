@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('index', views.index, name='index'),
     path('contact', views.contact, name='contact'),
     path('checked_out', views.checkedOut, name='checkedOut'),
     path('toolpage/<int:tool_id>', views.toolpage, name='toolpage'),
@@ -16,4 +17,6 @@ urlpatterns = [
     path('nuke', views.nuke_it, name='nuke_it'),
     path('available', views.availableTools, name='available'),
     path('project', views.project, name='project'),
+    path('checkout', views.checkout, name='checkout'),
+    path('addToCart/<int:category_id>/', views.addToCart, name='addToCart'),
 ]

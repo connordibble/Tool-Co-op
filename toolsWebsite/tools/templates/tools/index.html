@@ -50,12 +50,28 @@
                     <i class="fa fa-cart-arrow-down"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
-                    <div id="cartDropdownItems"></div>
-                    <a href="/checkout">
-                      <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
-                        Check Out
-                      </button>
-                    </a>
+                    <b>Items in Cart</b>
+                    <div id="cartDropdownItems">
+                      <div class="tool-container">
+                      {% if cart %}
+                        {% for tool in cart %}
+                          <b>Tool:</b> {{ tool.tool }}
+                          <b>Quantity:</b> {{ tool.quantity }}
+                          <br><br>
+                        {% endfor %}
+
+                      {% else %}
+                          <b>CART EMPTY</b>
+                      {% endif %}
+                      </div>
+                    </div>
+                    {% if cart %}
+                      <a href="/tools/checkout">
+                        <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
+                          Check Out
+                        </button>
+                      </a>
+                    {% endif %}
                   </div>
                 </li>
               </ul>
@@ -104,14 +120,24 @@
           {% for category in tools_list %}
             <div class="tool-container">
               <a href="{% url 'toolpage' category.id %}">
-              <img height="150px" width="auto" src="{{ category.tool_image }}"/>
-              <h4>{{ category.type }}</h4>
-              Available: {{ category.available }}
-              <br>
-              Checked Out: {{ category.unavailable }}
-              <br>
-              Rental fee: ${{ category.price }}
+                <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                <h4>{{ category.type }}</h4>
+                Available: {{ category.available }}
+                <br>
+                Checked Out: {{ category.unavailable }}
+                <br>
+                Rental fee: ${{ category.price }}
+                <br>
               </a>
+              {% if category.available > 0 %}
+                <a href="addToCart/{{category.id}}">
+                  <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
+                    Add to Cart
+                  </button>
+                </a>
+              {% else %}
+                <b>Unavailable</b>
+              {% endif %}
             </div>
           {% endfor %}
 

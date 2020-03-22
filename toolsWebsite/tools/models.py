@@ -12,8 +12,13 @@ class ToolCategory(models.Model):
 
 class DueDates(models.Model):
     toolCategory = models.ForeignKey(ToolCategory,on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
     buyer = models.CharField(max_length=200)
     date_bought = models.DateTimeField()
     date_due = models.DateTimeField()
 
+class ShoppingCart(models.Model):
+    toolCategory = models.ForeignKey(ToolCategory, on_delete=models.CASCADE, default=0)
+    tool = models.CharField(max_length=30)
+    quantity = models.IntegerField(default=1)
 
