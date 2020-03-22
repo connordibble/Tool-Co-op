@@ -12,6 +12,7 @@ urlpatterns = [
     path('edit_tool/<int:tool_id>', views.edit_tool, name='edit_tool'),
     path('create_category', views.create_category, name='create_category'),
     path('overdue', views.overdue, name='overdue'),
+    path('history', views.history, name='history'),
     path('create', views.create, name='create'),
     path('init', views.init, name='init'),
     path('nuke', views.nuke_it, name='nuke_it'),
