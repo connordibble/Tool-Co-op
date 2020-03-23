@@ -22,3 +22,8 @@ class ShoppingCart(models.Model):
     tool = models.CharField(max_length=30)
     quantity = models.IntegerField(default=1)
 
+class History(models.Model):
+    customer = models.CharField(max_length=200)
+    date_bought = models.DateTimeField()
+    price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+    tools = models.CharField(max_length=500)
