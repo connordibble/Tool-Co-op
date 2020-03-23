@@ -42,6 +42,8 @@ MILESTONE 3
 	* Add Overdue Tools Tab - March 16, 2020
 	* Add ability to Edit a tool - March 19, 2020
 	* Review Shopping Cart PR - March 19, 2020
+	* Add History Tab - March 23, 2020
+	* Review Logo PR - March 23, 2020
       
       *Mark Yamane 
       
