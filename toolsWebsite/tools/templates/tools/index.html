@@ -44,11 +44,6 @@
             <li class="nav-item">
               <a class="nav-link" href="/tools/history">History</a>
             </li>
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="#">Logged In</a>
-              </li>
-            {% endif %}
             <li class="nav-item">
               <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown no-arrow">
@@ -120,7 +115,9 @@
         </div>
         <br>
         <h1>List of Tools</h1>
-        <a class="btn btn-outline-success my-2 my-sm-0 " href="/tools/create_category">+ Create</a>
+        {% if user.is_authenticated %}
+          <a class="btn btn-outline-success my-2 my-sm-0 " href="/tools/create_category">+ Create</a>
+        {% endif %}
         <div class="tool-grid">
         {% if tools_list %}
           {% for category in tools_list %}
