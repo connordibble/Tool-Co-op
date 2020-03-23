@@ -1,7 +1,7 @@
 from random import randint
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import ToolCategory, DueDates, ShoppingCart
+from .models import ToolCategory, DueDates, ShoppingCart, History
 from django.utils import timezone
 import datetime
 import os
@@ -37,6 +37,14 @@ def project(request):
     }
 
     return render(request, 'tools/project.html', context)
+    
+def history(request):
+    cart = ShoppingCart.objects.all()
+    history = History.objects.order_by('-date_bought')
+    context = { "history" : history,
+                "cart" : cart
+                }
+    return render(request, 'tools/history.html', context)
     
 def toolpage(request, tool_id):
     cart = ShoppingCart.objects.all()
@@ -129,6 +137,7 @@ def checkout(request):
         'cart': cart,
     }
 
+    history = History()
     for cart in ShoppingCart.objects.all():
         due = DueDates()
         due.toolCategory = cart.toolCategory
@@ -139,8 +148,16 @@ def checkout(request):
         # due.date_due = datetime.datetime.now()
         due.buyer = "Connor"
         due.save()
+        
+        history.customer = due.buyer
+        history.date_bought = due.date_bought
+        history.price += due.toolCategory.price
+        history.tools += due.toolCategory.type + ", "
+        
         cart.delete()
-
+    
+    history.tools = history.tools[:-2]
+    history.save()
     return render(request, 'tools/checkout.html', context)
 
 
