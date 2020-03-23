@@ -1,5 +1,6 @@
 from random import randint
 from django.shortcuts import render, redirect, get_object_or_404
+
 from .forms import RegisterForm
 from .models import ToolCategory, DueDates, ShoppingCart, History
 from django.contrib.auth.models import User
