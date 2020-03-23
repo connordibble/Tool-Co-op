@@ -27,3 +27,8 @@ class History(models.Model):
     date_bought = models.DateTimeField()
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     tools = models.CharField(max_length=500)
+    CHECKIN = "Checked In"
+    CHECKOUT = "Checked Out"
+    
+    state = models.CharField(
+    max_length=2, default=CHECKOUT)

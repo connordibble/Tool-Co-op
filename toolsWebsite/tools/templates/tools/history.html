@@ -88,7 +88,7 @@
         <h1 style="text-align: center;">Transaction History</h1>
         {% if history %}
           {% for transaction in history %}
-              <h4>{{ transaction.customer }}</h4>
+              <h4>{{ transaction.customer }} {{transaction.state}}</h4>
               <p>Date Bought: {{ transaction.date_bought|date:"M d, Y" }}</p>
               <p>Total Price: ${{transaction.price}}</p>
               <p>Tools Rented: {{transaction.tools}}</p>
