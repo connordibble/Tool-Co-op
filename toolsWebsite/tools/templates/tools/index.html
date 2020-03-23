@@ -43,6 +43,11 @@
             <li class="nav-item">
               <a class="nav-link" href="#">History</a>
             </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Logged In</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
               <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown no-arrow">
