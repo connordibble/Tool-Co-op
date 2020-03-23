@@ -32,6 +32,8 @@ MILESTONE 2
       
       *Mark Yamane 
         *Added Logo to all existing html pages - Mar 16, 2020
+        *Added spacing to logos - Mar 23, 2020
+        *Made a unit test for ToolCategory model - Mar 23, 2020
       *Connor Dibble
         *Updated tool model to include picture - Mar 10, 2020
         *Reviewed contact us page - Mar 11, 2020
