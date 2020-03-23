@@ -53,3 +53,6 @@ main .container {
     align-content: start;
     margin-top: 20px;
 }
+.logo {
+    padding-right: 10px;
+}
