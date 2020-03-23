@@ -34,8 +34,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/tools/available">Available</a>
-                <a class="dropdown-item" href="#">Checked Out</a>
-                <a class="dropdown-item" href="#">Overdue</a>
+                <a class="dropdown-item" href="/tools/checked_out">Checked Out</a>
+                <a class="dropdown-item" href="/tools/overdue">Overdue</a>
               </div>
             </li>
             <li class="nav-item">
@@ -51,12 +51,28 @@
                     <i class="fa fa-cart-arrow-down"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
-                    <div id="cartDropdownItems"></div>
-                    <a href="/checkout">
-                      <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
-                        Check Out
-                      </button>
-                    </a>
+                    <b>Items in Cart</b>
+                    <div id="cartDropdownItems">
+                      <div class="tool-container">
+                      {% if cart %}
+                        {% for tool in cart %}
+                          <b>Tool:</b> {{ tool.tool }}
+                          <b>Quantity:</b> {{ tool.quantity }}
+                          <br><br>
+                        {% endfor %}
+
+                      {% else %}
+                          <b>CART EMPTY</b>
+                      {% endif %}
+                      </div>
+                    </div>
+                    {% if cart %}
+                      <a href="/tools/checkout">
+                        <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
+                          Check Out
+                        </button>
+                      </a>
+                    {% endif %}
                   </div>
                 </li>
               </ul>
@@ -78,9 +94,12 @@
               <div class="tool-container">
                 <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image}}"/>
                 <h4>{{ tool.toolCategory.type }}</h4>
-                Rented: {{ tool.date_bought }}
+                Rented: {{ tool.date_bought|date:"M d, Y" }}
                 <br>
-                Due: {{ tool.date_due }}
+
+                Quantity: {{ tool.quantity }}
+                <br>
+                Due: {{ tool.date_due|date:"M d, Y" }}
                 <br>
                 Buyer: {{ tool.buyer }}
               </div>

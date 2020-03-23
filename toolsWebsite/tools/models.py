@@ -7,13 +7,18 @@ class ToolCategory(models.Model):
     type = models.CharField(max_length=30)
     available = models.IntegerField(default=0)
     unavailable = models.IntegerField(default=0)
-    price = models.FloatField(default=0)
+    price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     tool_image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default='')
 
 class DueDates(models.Model):
     toolCategory = models.ForeignKey(ToolCategory,on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
     buyer = models.CharField(max_length=200)
     date_bought = models.DateTimeField()
     date_due = models.DateTimeField()
 
+class ShoppingCart(models.Model):
+    toolCategory = models.ForeignKey(ToolCategory, on_delete=models.CASCADE, default=0)
+    tool = models.CharField(max_length=30)
+    quantity = models.IntegerField(default=1)
 

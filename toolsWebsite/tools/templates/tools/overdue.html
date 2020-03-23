@@ -11,21 +11,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
     <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
-    <title>Projects</title>
+    <title>Overdue</title>
   </head>
 
   <body class="d-flex flex-column">
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <img height="40px" width="auto" src="{% static 'images/ToolShed.jpg'%}"/>
         <a class="navbar-brand" href="/tools/">Tool Co-op</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="/tools/">All Tools <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
@@ -38,7 +37,7 @@
                 <a class="dropdown-item" href="/tools/overdue">Overdue</a>
               </div>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/tools/project">Projects</a>
             </li>
             <li class="nav-item">
@@ -86,7 +85,25 @@
     <main role="main">
       <div class="container">
         <br>
-        <h1>Project Page</h1>
+        <h1>Overdue Tools</h1>
+        <div class="tool-grid">
+        {% if overdue_tools %}
+          {% for tool in overdue_tools %}
+            <div class="tool-container">
+              <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image }}"/>
+              <h4>{{ tool.toolCategory.type }}</h4>
+              Customer: {{ tool.buyer }}
+              <br>
+              Date Bought: {{ tool.date_bought|date:"M d, Y" }}
+              <br>
+              Date Due: {{ tool.date_due|date:"M d, Y" }}
+            </div>
+          {% endfor %}
+
+        {% else %}
+            <p>No overdue tools :)</p>
+        {% endif %}
+        </div>
       </div>
     </main>
 
@@ -95,7 +112,6 @@
       <div class="container text-center">
         <h5 class="mb-1 text-muted">Have Questions? <a class="btn btn-outline-info my-2 my-sm-0 " href="/tools/contact">Contact Us!</a></h5>
       </div>
-      <img class="rounded mx-auto d-block" height="40px" width="auto" src="{% static 'images/ToolShed.jpg'%}"/>
       <div class="footer-copyright text-center py-3 text-muted">© 2020 Copyright</div>
     </footer>
     <!-- Footer End -->

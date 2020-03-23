@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">All Tools <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/tools/">All Tools <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,7 +35,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/tools/available">Available</a>
                 <a class="dropdown-item" href="/tools/checked_out">Checked Out</a>
-                <a class="dropdown-item" href="#">Overdue</a>
+                <a class="dropdown-item" href="/tools/overdue">Overdue</a>
               </div>
             </li>
             <li class="nav-item">
@@ -51,12 +51,28 @@
                     <i class="fa fa-cart-arrow-down"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
-                    <div id="cartDropdownItems"></div>
-                    <a href="/checkout">
-                      <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
-                        Check Out
-                      </button>
-                    </a>
+                    <b>Items in Cart</b>
+                    <div id="cartDropdownItems">
+                      <div class="tool-container">
+                      {% if cart %}
+                        {% for tool in cart %}
+                          <b>Tool:</b> {{ tool.tool }}
+                          <b>Quantity:</b> {{ tool.quantity }}
+                          <br><br>
+                        {% endfor %}
+
+                      {% else %}
+                          <b>CART EMPTY</b>
+                      {% endif %}
+                      </div>
+                    </div>
+                    {% if cart %}
+                      <a href="/tools/checkout">
+                        <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
+                          Check Out
+                        </button>
+                      </a>
+                    {% endif %}
                   </div>
                 </li>
               </ul>
@@ -75,12 +91,16 @@
             {% csrf_token %}
             <label for="form_name">Tool Name</label>
             <input id="form_name" type="text" name="name" class="form-control" placeholder="Tool Name" required="required" data-error="Tool name is required.">
+            <br>
             <label for="form_name">Quantity</label>
             <input id="form_name" type="number" name="quantity" class="form-control" placeholder="Quantity" required="required" data-error="Quantity is required.">
+            <br>
             <label for="form_name">Price</label>
             <input id="form_name" type="number" min="1" step="any" name="price" class="form-control" placeholder="Price" required="required" data-error="Price is required.">
+            <br>
             <label for="form_name">Image URL</label>
             <input id="form_name" type="text" name="img" class="form-control" placeholder="Image URL" required="required" data-error="Image is required.">
+            <br>
             <input type="submit" class="btn btn-success btn-send" value="Create Tool Category">
         </form>
       </div>

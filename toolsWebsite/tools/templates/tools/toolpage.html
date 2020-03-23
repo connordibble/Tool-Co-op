@@ -11,21 +11,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
     <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
-    <title>Projects</title>
+    <title>Edit Tool</title>
   </head>
 
   <body class="d-flex flex-column">
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <img height="40px" width="auto" src="{% static 'images/ToolShed.jpg'%}"/>
         <a class="navbar-brand" href="/tools/">Tool Co-op</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="/tools/">All Tools <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
@@ -38,7 +37,7 @@
                 <a class="dropdown-item" href="/tools/overdue">Overdue</a>
               </div>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/tools/project">Projects</a>
             </li>
             <li class="nav-item">
@@ -86,7 +85,49 @@
     <main role="main">
       <div class="container">
         <br>
-        <h1>Project Page</h1>
+        <h1>{{tool.type}}</h1>
+        <img height="300px" width="auto" src="{{ tool.tool_image }}"/>
+        <p>Available: {{tool.available}}</p>
+        <p>Checked out: {{tool.unavailable}}</p>
+        <p>Price: ${{tool.price}}</p>
+        <button id="editbutton" class="btn btn-outline-secondary" onclick="opencloseForm()">Edit</button>
+        <a href="{% url 'delete_tool' tool.id %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+        <br>
+        <div class="form-popup" id="editForm">
+          <form action="{% url 'edit_tool' tool.id %}" method="post" class="form-container">
+            <h2>Edit Tool</h2>
+            {% csrf_token %}
+            <label for="form_name">Tool Name</label>
+            <input id="form_name" type="text" name="name" class="form-control" placeholder="Tool Name" value="{{tool.type}}" required="required" data-error="Tool name is required.">
+            <br>
+            <label for="form_name">Quantity</label>
+            <input id="form_name" type="number" name="quantity" class="form-control" placeholder="Quantity" value="{{tool.available}}" required="required" data-error="Quantity is required.">
+              <br>
+            <label for="form_name">Price</label>
+            <input id="form_name" type="number" min="1" step="any" name="price" class="form-control" placeholder="Price" value="{{tool.price}}" required="required" data-error="Price is required.">
+              <br>
+            <label for="form_name">Image URL</label>
+            <input id="form_name" type="text" name="img" class="form-control" placeholder="Image URL" value="{{tool.tool_image}}" required="required" data-error="Image is required.">
+              <br>
+            <input type="submit" class="btn btn-success btn-send" value="Submit Edit">
+          </form>
+        </div>
+
+        <script>
+        let open = true;
+        document.getElementById("editForm").style.display = "none";
+        function opencloseForm() {
+            if (open) {
+                document.getElementById("editForm").style.display = "block";
+                document.getElementById("editbutton").textContent = "Close Edit";
+                open = false;
+            } else {
+                document.getElementById("editForm").style.display = "none";
+                document.getElementById("editbutton").textContent = "Edit";
+                open = true
+            }
+        }
+        </script>
       </div>
     </main>
 
@@ -95,7 +136,6 @@
       <div class="container text-center">
         <h5 class="mb-1 text-muted">Have Questions? <a class="btn btn-outline-info my-2 my-sm-0 " href="/tools/contact">Contact Us!</a></h5>
       </div>
-      <img class="rounded mx-auto d-block" height="40px" width="auto" src="{% static 'images/ToolShed.jpg'%}"/>
       <div class="footer-copyright text-center py-3 text-muted">© 2020 Copyright</div>
     </footer>
     <!-- Footer End -->
