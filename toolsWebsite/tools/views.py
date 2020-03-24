@@ -1,7 +1,9 @@
 from random import randint
 from django.shortcuts import render, redirect, get_object_or_404
 
+from .forms import RegisterForm
 from .models import ToolCategory, DueDates, ShoppingCart, History
+from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
 import os
@@ -186,6 +188,8 @@ def addToCart(request, category_id):
 
 def init(request):
     nuke(request)
+    User.objects.filter(email='admin@example.com').delete()
+    User.objects.create_superuser('admin', 'admin@example.com', 'admin')
     categories = ['hammer', 'wrench', 'screwdriver', 'level', 'drill']
     images = {
         'hammer': 'data:image/jpeg;base64,'
