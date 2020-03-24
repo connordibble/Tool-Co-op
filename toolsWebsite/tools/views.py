@@ -42,7 +42,8 @@ def project(request):
     
 def history(request):
     cart = ShoppingCart.objects.all()
-    history = History.objects.order_by('-date_bought')
+    history = History.objects.all()[::-1]
+    
     context = { "history" : history,
                 "cart" : cart
                 }
@@ -126,10 +127,22 @@ def create(request):
     return redirect('index')
 
 
-def handle_uploaded_file(f):
-    with open(f"tools/static/images/{f}", 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+def checkin(request, tool_id):
+    due = get_object_or_404(DueDates, pk=tool_id)
+    due.toolCategory.available += due.quantity
+    due.toolCategory.unavailable -= due.quantity
+    due.toolCategory.save()
+    
+    history = History()
+    history.customer = due.buyer
+    history.date_bought = due.date_bought
+    history.price = 0 # We could put late fees here if we want
+    history.tools = due.toolCategory.type
+    history.state = history.CHECKIN
+    history.save()
+
+    due.delete()
+    return redirect('index')
 
 
 def checkout(request):
@@ -144,7 +157,7 @@ def checkout(request):
         due = DueDates()
         due.toolCategory = cart.toolCategory
         due.quantity = cart.quantity
-        due.date_bought = datetime.datetime(2019, randint(1, 12), randint(1, 28))
+        due.date_bought = datetime.datetime.now()
         due.date_due = datetime.datetime(2020, randint(1, 12), randint(1, 28))
         # due.date_bought = datetime.datetime.now()
         # due.date_due = datetime.datetime.now()
@@ -159,6 +172,7 @@ def checkout(request):
         cart.delete()
     
     history.tools = history.tools[:-2]
+    history.state = history.CHECKOUT
     history.save()
     return render(request, 'tools/checkout.html', context)
 
@@ -235,4 +249,6 @@ def nuke(request):
 
 def nuke_it(request):
     nuke(request)
+    history = History.objects.all()
+    history.delete()
     return redirect('index')

@@ -130,10 +130,10 @@
                 Checked Out: {{ category.unavailable }}
                 <br>
                 Rental fee: ${{ category.price }}
-                <br>
+                <br><br>
               </a>
               {% if category.available > 0 %}
-                <a href="addToCart/{{category.id}}">
+                <a href="addToCart/{{category.id}}" style="text-align: center;">
                   <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
                     Add to Cart
                   </button>
