@@ -54,6 +54,8 @@ def history(request):
 
 
 def toolpage(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('index')
     cart = ShoppingCart.objects.all()
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
     context = {'tool': tool_category, 'cart': cart}
@@ -61,12 +63,16 @@ def toolpage(request, tool_id):
 
 
 def delete_tool(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('index')
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
     tool_category.delete()
     return redirect('index')
 
 
 def edit_tool(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('index')
     t = get_object_or_404(ToolCategory, pk=tool_id)
     t.type = request.POST['name']
     t.available = request.POST['quantity']
@@ -104,6 +110,8 @@ def availableTools(request):
 
 
 def create_category(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     cart = ShoppingCart.objects.all()
 
     context = {
@@ -124,6 +132,8 @@ def overdue(request):
 
 
 def create(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     t = ToolCategory()
     t.type = request.POST['name']
     t.available = request.POST['quantity']
@@ -173,7 +183,7 @@ def checkout(request):
         
         history.customer = due.buyer
         history.date_bought = due.date_bought
-        history.price += due.toolCategory.price
+        history.price += due.toolCategory.price * due.quantity
         history.tools += due.toolCategory.type + ", "
         
         cart.delete()
@@ -181,7 +191,10 @@ def checkout(request):
     history.tools = history.tools[:-2]
     history.state = history.CHECKOUT
     history.save()
-    return render(request, 'tools/checkout.html', context)
+    return redirect('checkout_confirmed')
+    
+def checkout_confirmed(request):
+    return render(request, 'tools/checkout.html')
 
 
 def addToCart(request, category_id):
@@ -208,6 +221,8 @@ def addToCart(request, category_id):
 
 
 def init(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     nuke(request)
     User.objects.filter(email='admin@example.com').delete()
     User.objects.create_superuser('admin', 'admin@example.com', 'admin')
@@ -255,6 +270,8 @@ def nuke(request):
 
 
 def nuke_it(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     nuke(request)
     history = History.objects.all()
     history.delete()

@@ -41,9 +41,11 @@
             <li class="{% block projects_active %} nav-item {% endblock %}">
               <a class="nav-link" href="/tools/project">Projects</a>
             </li>
-            <li class="{% block history_active %} nav-item {% endblock %}">
-              <a class="nav-link" href="/tools/history">History</a>
-            </li>
+            {% if user.is_authenticated %}
+                <li class="{% block history_active %} nav-item {% endblock %}">
+                  <a class="nav-link" href="/tools/history">History</a>
+                </li>
+            {% endif %}
             <li class="nav-item">
               <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown no-arrow">
@@ -77,6 +79,19 @@
                 </li>
               </ul>
             </li>
+            {% if not user.is_authenticated %}
+                <li class="nav-item">
+                  <a href="/tools/login">
+                    <button class="btn btn-outline-primary ml-2">Login</button>
+                  </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                  <a href="/tools/logout">
+                    <button class="btn btn-outline-primary ml-2">Logout</button>
+                  </a>
+                </li>
+            {% endif %}
           </ul>
         </div>
       </div>

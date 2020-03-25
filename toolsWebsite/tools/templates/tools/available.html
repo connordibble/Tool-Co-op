@@ -11,13 +11,21 @@
       {% if available_tools %}
         {% for tool in available_tools %}
           <div class="tool-container">
-            <a href="{% url 'toolpage' tool.id %}">
-            <img height="150px" width="auto" src="{{ tool.tool_image }}"/>
-            <h4>{{ tool.type }}</h4>
-            Total: {{ tool.available }}
-            <br>
-            Rental fee: ${{ tool.price }}
-            </a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'toolpage' tool.id %}">
+                <img height="150px" width="auto" src="{{ tool.tool_image }}"/>
+                <h4>{{ tool.type }}</h4>
+                Total: {{ tool.available }}
+                <br>
+                Rental fee: ${{ tool.price }}
+                </a>
+            {% else %}
+                <img height="150px" width="auto" src="{{ tool.tool_image }}"/>
+                <h4>{{ tool.type }}</h4>
+                Total: {{ tool.available }}
+                <br>
+                Rental fee: ${{ tool.price }}
+            {% endif %}
           </div>
         {% endfor %}
 
