@@ -1,12 +1,12 @@
 from random import randint
+import datetime
+import os
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 from .forms import RegisterForm
 from .models import ToolCategory, DueDates, ShoppingCart, History
-from django.contrib.auth.models import User
-from django.utils import timezone
-import datetime
-import os
 
 
 def index(request):
@@ -16,7 +16,6 @@ def index(request):
     context = {
         'tools_list': tools_list,
         'cart': cart,
-
     }
     return render(request, 'tools/index.html', context)
 
@@ -39,26 +38,33 @@ def project(request):
     }
 
     return render(request, 'tools/project.html', context)
-    
+
+
 def history(request):
-    cart = ShoppingCart.objects.all()
-    history = History.objects.all()[::-1]
-    
-    context = { "history" : history,
-                "cart" : cart
-                }
-    return render(request, 'tools/history.html', context)
-    
+    if not request.user.is_authenticated:
+        return redirect('index')
+    else:
+        cart = ShoppingCart.objects.all()
+        history = History.objects.all()[::-1]
+
+        context = { "history" : history,
+                    "cart" : cart
+                    }
+        return render(request, 'tools/history.html', context)
+
+
 def toolpage(request, tool_id):
     cart = ShoppingCart.objects.all()
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
-    context = {'tool' : tool_category, 'cart': cart}
+    context = {'tool': tool_category, 'cart': cart}
     return render(request, 'tools/toolpage.html', context)
+
 
 def delete_tool(request, tool_id):
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
     tool_category.delete()
     return redirect('index')
+
 
 def edit_tool(request, tool_id):
     t = get_object_or_404(ToolCategory, pk=tool_id)
@@ -68,7 +74,8 @@ def edit_tool(request, tool_id):
     t.tool_image = request.POST['img']
     t.save()
     return redirect('index')
-    
+
+
 def checkedOut(request):
     cart = ShoppingCart.objects.all()
     tools_list = ToolCategory.objects.all()

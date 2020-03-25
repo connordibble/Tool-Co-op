@@ -56,7 +56,7 @@ ROOT_URLCONF = 'toolsWebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['tools/templates/tools'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,3 +131,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/tools"
 LOGOUT_REDIRECT_URL = "/tools"
+LOGIN_URL = "/tools/login"

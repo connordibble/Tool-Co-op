@@ -28,9 +28,12 @@ MILESTONE 3
    MILESTONE 3
     SPRINT 1 March 8 - 14
       *Karsten Boettcher - Scrum Master
-	*Changed global navbar styling - Mar 12, 2020
-	*Added styling to tool displays - Mar 13, 2020
-	*Minor styling adjustments - Mar 13, 2020
+        * Tool pictures PR review - Mar 11, 2020
+	* Checked Out Tools tab PR review - Mar 11, 2020
+	* Contact Us tab PR review - Mar 11, 2020
+	* Changed global navbar styling - Mar 12, 2020
+	* Added styling to tool displays - Mar 13, 2020
+	* Minor styling adjustments - Mar 13, 2020
       
       *Tyler Green
 	* Add Carousel to front page - March 10, 2020
@@ -48,11 +51,38 @@ MILESTONE 3
       *Mark Yamane 
       
       *Connor Dibble
-        *Updated tool model to include picture - Mar 10, 2020
-        *Reviewed contact us page - Mar 11, 2020
-        *Made shopping cart prototype branch - Mar 12, 2020
-	*Added functionality for cart to update checked out page - Mar 12, 2020
-        *Reviewed project page tab - Mar 13, 2020
-	*Reviewed Overdue Tools Tab - Mar 17, 2020
-	*Requested changes for tool logo - Mar 17, 2020
-        
+        * Updated tool model to include picture - Mar 10, 2020
+        * Reviewed contact us page - Mar 11, 2020
+        * Made shopping cart prototype branch - Mar 12, 2020
+	* Added functionality for cart to update checked out page - Mar 12, 2020
+        * Reviewed project page tab - Mar 13, 2020
+	* Reviewed Overdue Tools Tab - Mar 17, 2020
+	* Requested changes for tool logo - Mar 17, 2020
+	
+    SPRINT 2 March 15 - 21
+      *Karsten Boettcher
+	* Added employee login/logout functions - Mar 21, 2020
+	* Added content viewing authorization - Mar 21, 2020
+	* Tool check-in PR review - Mar 24, 2020
+      
+      *Tyler Green
+	* 
+      
+      *Mark Yamane 
+      	* 
+	
+      *Connor Dibble - Scrum Master
+	* 
+	
+    SPRINT 3 March 22 - 28
+      *Karsten Boettcher
+	* Tool check-in PR review - Mar 24, 2020
+      
+      *Tyler Green
+	* 
+      
+      *Mark Yamane 
+      	* 
+	
+      *Connor Dibble
+	* 
