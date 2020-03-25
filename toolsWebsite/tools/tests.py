@@ -13,3 +13,4 @@ class ToolCategoryTestCase(TestCase):
         self.assertEqual(hammer.available, 3)
         self.assertEqual(hammer.tool_image, "")
         
+        
