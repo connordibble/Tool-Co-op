@@ -102,6 +102,12 @@
                 Due: {{ tool.date_due|date:"M d, Y" }}
                 <br>
                 Buyer: {{ tool.buyer }}
+                <br><br>
+                <a href="checkin/{{tool.id}}" onclick="return confirm('Are you sure you want to check in this item?');" style="text-align: center;">
+                  <button type="button" class="btn btn-outline-info">
+                    Check In
+                  </button>
+                </a>
               </div>
             {% endfor %}
 
