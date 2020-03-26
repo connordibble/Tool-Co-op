@@ -72,7 +72,10 @@ MILESTONE 3
       	* 
 	
       *Connor Dibble - Scrum Master
-	* 
+	* Shopping Cart doesn't allow checkouts for unavailable tools - Mar 20, 2020
+	* Shopping Cart won't allow checkout of empty cart - Mar 20, 2020
+	* Quantity is added to the checked out screen and works with the shopping cart - Mar 21, 2020
+	* Displays items in cart in drop down menu - Mar 21, 2020
 	
     SPRINT 3 March 22 - 28
       *Karsten Boettcher
@@ -85,4 +88,4 @@ MILESTONE 3
       	* 
 	
       *Connor Dibble
-	* 
+	* Reviewed Bug Fixes - Mar 26, 2020
