@@ -14,6 +14,9 @@ def getCart():
 def index(request):
     context = getCart()
     tools_list = ToolCategory.objects.all()
+    context['inCart'] = 0
+    for item in context['cart']:
+        context['inCart'] += item.quantity
     try:
         filter = request.POST['search']
         filter_list = []
