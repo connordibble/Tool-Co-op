@@ -12,10 +12,20 @@ def getCart():
     return { 'cart' : cart }
 
 def index(request):
-    tools_list = ToolCategory.objects.all()
     context = getCart()
-    context['tools_list'] = tools_list
-    return render(request, 'tools/index.html', context)
+    tools_list = ToolCategory.objects.all()
+    try:
+        filter = request.POST['search']
+        filter_list = []
+        for tool in tools_list:
+            if filter in tool.type:
+                filter_list.append(tool)
+        context['tools_list'] = filter_list
+        context['search'] = filter
+    except:
+        context['tools_list'] = tools_list
+    finally:
+        return render(request, 'tools/index.html', context)
 
 
 def contact(request):
