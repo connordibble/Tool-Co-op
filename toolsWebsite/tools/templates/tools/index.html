@@ -42,16 +42,27 @@
     {% if tools_list %}
       {% for category in tools_list %}
         <div class="tool-container">
-          <a href="{% url 'toolpage' category.id %}">
-            <img height="150px" width="auto" src="{{ category.tool_image }}"/>
-            <h4>{{ category.type }}</h4>
-            Available: {{ category.available }}
-            <br>
-            Checked Out: {{ category.unavailable }}
-            <br>
-            Rental fee: ${{ category.price }}
-            <br><br>
-          </a>
+          {% if user.is_authenticated %}
+              <a href="{% url 'toolpage' category.id %}">
+                <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                <h4>{{ category.type }}</h4>
+                Available: {{ category.available }}
+                <br>
+                Checked Out: {{ category.unavailable }}
+                <br>
+                Rental fee: ${{ category.price }}
+                <br><br>
+              </a>
+          {% else %}
+              <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                <h4>{{ category.type }}</h4>
+                Available: {{ category.available }}
+                <br>
+                Checked Out: {{ category.unavailable }}
+                <br>
+                Rental fee: ${{ category.price }}
+                <br><br>
+          {% endif %}
           {% if category.available > 0 %}
             <a href="addToCart/{{category.id}}" style="text-align: center;">
               <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
