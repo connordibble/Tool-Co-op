@@ -207,8 +207,9 @@ def addToCart(request, category_id):
 
 
 def init(request):
-    if not request.user.is_authenticated:
-        return redirect('index')
+# for now let's not have init be an admin view for simplicity sake
+#    if not request.user.is_authenticated:
+#        return redirect('index')
     nuke(request)
     User.objects.filter(email='admin@example.com').delete()
     User.objects.create_superuser('admin', 'admin@example.com', 'admin')
