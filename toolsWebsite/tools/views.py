@@ -1,66 +1,75 @@
 from random import randint
+import datetime
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 from .forms import RegisterForm
 from .models import ToolCategory, DueDates, ShoppingCart, History
-from django.contrib.auth.models import User
-from django.utils import timezone
-import datetime
-import os
 
+def getCart():
+    cart = ShoppingCart.objects.all()
+    return { 'cart' : cart }
 
 def index(request):
+    context = getCart()
     tools_list = ToolCategory.objects.all()
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'tools_list': tools_list,
-        'cart': cart,
-
-    }
-    return render(request, 'tools/index.html', context)
+    context['inCart'] = 0
+    for item in context['cart']:
+        context['inCart'] += item.quantity
+    try:
+        filter = request.POST['search']
+        filter_list = []
+        for tool in tools_list:
+            if filter in tool.type:
+                filter_list.append(tool)
+        context['tools_list'] = filter_list
+        context['search'] = filter
+    except:
+        context['tools_list'] = tools_list
+    finally:
+        return render(request, 'tools/index.html', context)
 
 
 def contact(request):
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
+    context = getCart()
     return render(request, 'tools/contact.html', context)
 
 
 def project(request):
-
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
-
+    context = getCart()
     return render(request, 'tools/project.html', context)
-    
+
+
 def history(request):
-    cart = ShoppingCart.objects.all()
+    if not request.user.is_authenticated:
+        return redirect('index')
     history = History.objects.all()[::-1]
-    
-    context = { "history" : history,
-                "cart" : cart
-                }
+    context = getCart()
+    context['history'] = history
     return render(request, 'tools/history.html', context)
-    
+
+
 def toolpage(request, tool_id):
-    cart = ShoppingCart.objects.all()
+    if not request.user.is_authenticated:
+        return redirect('index')
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
-    context = {'tool' : tool_category, 'cart': cart}
+    context = getCart()
+    context['tool'] = tool_category
     return render(request, 'tools/toolpage.html', context)
 
+
 def delete_tool(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('index')
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
     tool_category.delete()
     return redirect('index')
 
+
 def edit_tool(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('index')
     t = get_object_or_404(ToolCategory, pk=tool_id)
     t.type = request.POST['name']
     t.available = request.POST['quantity']
@@ -68,9 +77,9 @@ def edit_tool(request, tool_id):
     t.tool_image = request.POST['img']
     t.save()
     return redirect('index')
-    
+
+
 def checkedOut(request):
-    cart = ShoppingCart.objects.all()
     tools_list = ToolCategory.objects.all()
     list = []
     due = DueDates.objects.order_by('-date_bought')
@@ -78,45 +87,43 @@ def checkedOut(request):
         for tool in tools_list:
             if tool == d.toolCategory:
                 list.append(d)
-    context = {
-            "checkedOut_tools": list,
-            "cart": cart,
-    }
+    context = getCart()
+    context['checkedOut_tools'] = list
     return render(request, 'tools/checked_out.html', context)
 
 
 def availableTools(request):
-    cart = ShoppingCart.objects.all()
     tools_list = ToolCategory.objects.all()
     list = []
     for tool in tools_list:
         if tool.available > 0:
             list.append(tool)
-    context = {"available_tools": list, "cart": cart,}
+    context = getCart()
+    context['available_tools'] = list
     return render(request, 'tools/available.html', context)
 
 
 def create_category(request):
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
+    if not request.user.is_authenticated:
+        return redirect('index')
+    context = getCart()
     return render(request, 'tools/create_category.html', context)
 
 
 def overdue(request):
-    cart = ShoppingCart.objects.all()
     due_dates = DueDates.objects.order_by('-date_due')
     list = []
     for tool in reversed(due_dates):
         if tool.date_due < timezone.now():
             list.append(tool)
-    context = {"overdue_tools": list, "cart": cart}
+    context = getCart()
+    context['overdue_tools'] = list
     return render(request, 'tools/overdue.html', context)
 
 
 def create(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     t = ToolCategory()
     t.type = request.POST['name']
     t.available = request.POST['quantity']
@@ -146,11 +153,7 @@ def checkin(request, tool_id):
 
 
 def checkout(request):
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
+    context = getCart()
 
     history = History()
     for cart in ShoppingCart.objects.all():
@@ -166,7 +169,7 @@ def checkout(request):
         
         history.customer = due.buyer
         history.date_bought = due.date_bought
-        history.price += due.toolCategory.price
+        history.price += due.toolCategory.price * due.quantity
         history.tools += due.toolCategory.type + ", "
         
         cart.delete()
@@ -174,7 +177,10 @@ def checkout(request):
     history.tools = history.tools[:-2]
     history.state = history.CHECKOUT
     history.save()
-    return render(request, 'tools/checkout.html', context)
+    return redirect('checkout_confirmed')
+    
+def checkout_confirmed(request):
+    return render(request, 'tools/checkout.html')
 
 
 def addToCart(request, category_id):
@@ -201,6 +207,9 @@ def addToCart(request, category_id):
 
 
 def init(request):
+# for now let's not have init be an admin view for simplicity sake
+#    if not request.user.is_authenticated:
+#        return redirect('index')
     nuke(request)
     User.objects.filter(email='admin@example.com').delete()
     User.objects.create_superuser('admin', 'admin@example.com', 'admin')
@@ -248,6 +257,8 @@ def nuke(request):
 
 
 def nuke_it(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     nuke(request)
     history = History.objects.all()
     history.delete()
