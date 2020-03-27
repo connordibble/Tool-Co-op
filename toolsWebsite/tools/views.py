@@ -1,6 +1,5 @@
 from random import randint
 import datetime
-import os
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -8,57 +7,42 @@ from django.utils import timezone
 from .forms import RegisterForm
 from .models import ToolCategory, DueDates, ShoppingCart, History
 
+def getCart():
+    cart = ShoppingCart.objects.all()
+    return { 'cart' : cart }
 
 def index(request):
     tools_list = ToolCategory.objects.all()
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'tools_list': tools_list,
-        'cart': cart,
-    }
+    context = getCart()
+    context['tools_list'] = tools_list
     return render(request, 'tools/index.html', context)
 
 
 def contact(request):
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
+    context = getCart()
     return render(request, 'tools/contact.html', context)
 
 
 def project(request):
-
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
-
+    context = getCart()
     return render(request, 'tools/project.html', context)
 
 
 def history(request):
     if not request.user.is_authenticated:
         return redirect('index')
-    else:
-        cart = ShoppingCart.objects.all()
-        history = History.objects.all()[::-1]
-
-        context = { "history" : history,
-                    "cart" : cart
-                    }
-        return render(request, 'tools/history.html', context)
+    history = History.objects.all()[::-1]
+    context = getCart()
+    context['history'] = history
+    return render(request, 'tools/history.html', context)
 
 
 def toolpage(request, tool_id):
     if not request.user.is_authenticated:
         return redirect('index')
-    cart = ShoppingCart.objects.all()
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
-    context = {'tool': tool_category, 'cart': cart}
+    context = getCart()
+    context['tool'] = tool_category
     return render(request, 'tools/toolpage.html', context)
 
 
@@ -83,7 +67,6 @@ def edit_tool(request, tool_id):
 
 
 def checkedOut(request):
-    cart = ShoppingCart.objects.all()
     tools_list = ToolCategory.objects.all()
     list = []
     due = DueDates.objects.order_by('-date_bought')
@@ -91,43 +74,37 @@ def checkedOut(request):
         for tool in tools_list:
             if tool == d.toolCategory:
                 list.append(d)
-    context = {
-            "checkedOut_tools": list,
-            "cart": cart,
-    }
+    context = getCart()
+    context['checkedOut_tools'] = list
     return render(request, 'tools/checked_out.html', context)
 
 
 def availableTools(request):
-    cart = ShoppingCart.objects.all()
     tools_list = ToolCategory.objects.all()
     list = []
     for tool in tools_list:
         if tool.available > 0:
             list.append(tool)
-    context = {"available_tools": list, "cart": cart,}
+    context = getCart()
+    context['available_tools'] = list
     return render(request, 'tools/available.html', context)
 
 
 def create_category(request):
     if not request.user.is_authenticated:
         return redirect('index')
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
+    context = getCart()
     return render(request, 'tools/create_category.html', context)
 
 
 def overdue(request):
-    cart = ShoppingCart.objects.all()
     due_dates = DueDates.objects.order_by('-date_due')
     list = []
     for tool in reversed(due_dates):
         if tool.date_due < timezone.now():
             list.append(tool)
-    context = {"overdue_tools": list, "cart": cart}
+    context = getCart()
+    context['overdue_tools'] = list
     return render(request, 'tools/overdue.html', context)
 
 
@@ -163,11 +140,7 @@ def checkin(request, tool_id):
 
 
 def checkout(request):
-    cart = ShoppingCart.objects.all()
-
-    context = {
-        'cart': cart,
-    }
+    context = getCart()
 
     history = History()
     for cart in ShoppingCart.objects.all():
