@@ -12,10 +12,23 @@ def getCart():
     return { 'cart' : cart }
 
 def index(request):
-    tools_list = ToolCategory.objects.all()
     context = getCart()
-    context['tools_list'] = tools_list
-    return render(request, 'tools/index.html', context)
+    tools_list = ToolCategory.objects.all()
+    context['inCart'] = 0
+    for item in context['cart']:
+        context['inCart'] += item.quantity
+    try:
+        filter = request.POST['search']
+        filter_list = []
+        for tool in tools_list:
+            if filter in tool.type:
+                filter_list.append(tool)
+        context['tools_list'] = filter_list
+        context['search'] = filter
+    except:
+        context['tools_list'] = tools_list
+    finally:
+        return render(request, 'tools/index.html', context)
 
 
 def contact(request):
@@ -194,8 +207,9 @@ def addToCart(request, category_id):
 
 
 def init(request):
-    if not request.user.is_authenticated:
-        return redirect('index')
+# for now let's not have init be an admin view for simplicity sake
+#    if not request.user.is_authenticated:
+#        return redirect('index')
     nuke(request)
     User.objects.filter(email='admin@example.com').delete()
     User.objects.create_superuser('admin', 'admin@example.com', 'admin')
