@@ -22,7 +22,7 @@ Then run: `python manage.py runserver`
 
 # Unit Testing Instructions: #
 While using the unittest.TestCase library Django automatically generates a test.py file that will contain our unit test.
-in order to run all of the unit tests use the command python manage.py test
+in order to run all of the unit tests use the command `python manage.py test`
 
 # System Testing Instructions: #
 
