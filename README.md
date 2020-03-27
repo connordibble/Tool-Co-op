@@ -21,13 +21,8 @@ Pull latest code from specified branch.
 Then run: `python manage.py runserver`
 
 # Unit Testing Instructions: #
-While using the unittest.TestCase library we must have `__init__.py` file in our `test/` directory
-
-The test directory must be named `test/` with the test files matching pattern `test_*.py` 
-
-Subdirectories can have any name.
-
-Run all tests with `python -m unittest`
+While using the unittest.TestCase library Django automatically generates a test.py file that will contain our unit test.
+in order to run all of the unit tests use the command python manage.py test
 
 # System Testing Instructions: #
 
