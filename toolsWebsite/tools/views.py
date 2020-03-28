@@ -87,6 +87,8 @@ def edit_tool(request, tool_id):
 
 
 def checkedOut(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     tools_list = ToolCategory.objects.all()
     list = []
     due = DueDates.objects.order_by('-date_bought')
@@ -118,6 +120,8 @@ def create_category(request):
 
 
 def overdue(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
     due_dates = DueDates.objects.order_by('-date_due')
     list = []
     for tool in reversed(due_dates):
