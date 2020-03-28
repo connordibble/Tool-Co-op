@@ -62,8 +62,8 @@ MILESTONE 3
     SPRINT 2 March 15 - 21
       *Karsten Boettcher
 	* Added employee login/logout functions - Mar 21, 2020
+	* Added backend code for possible user registration - Mar 21, 2020
 	* Added content viewing authorization - Mar 21, 2020
-	* Tool check-in PR review - Mar 24, 2020
       
       *Tyler Green
 	* 
@@ -80,6 +80,9 @@ MILESTONE 3
     SPRINT 3 March 22 - 28
       *Karsten Boettcher
 	* Tool check-in PR review - Mar 24, 2020
+	* Reviewed several PRs - Mar 27, 2020
+	* Organized authorized/unauthorized content - Mar 28, 2020
+	* Restyled checkout tab, footer, home page, history page, and a few other minor changes - Mar 28, 2020
       
       *Tyler Green
 	* 
