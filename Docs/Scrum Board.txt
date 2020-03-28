@@ -87,7 +87,9 @@ MILESTONE 3
       
       *Tyler Green
 	 * Add History Tab - March 23, 2020
-         * Review Logo PR - March 23, 2020 
+         * Review Logo PR - March 23, 2020
+	 * Add search bar/search ability - March 27, 2020
+	 * Add checkout limit on tools - March 27, 2020
       
       *Mark Yamane
         * Made a unit test for ToolCategory model - Mar 23, 2020
