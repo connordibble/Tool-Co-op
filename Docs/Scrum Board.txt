@@ -43,7 +43,7 @@ MILESTONE 3
 	  * Add Create Tool button/page - March 14, 2020
 
       *Mark Yamane 
-	* Added logo to html pages - Mar, 14,2020
+	* Added logo to html pages - Mar, 13,2020
 	* Reviewed functionality for the shopping cart - Mar 13, 2020
 	* Reviewed Project Page Tab - Mar 14, 2020
       
