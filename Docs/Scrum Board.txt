@@ -43,7 +43,9 @@ MILESTONE 3
           * Add Create Tool button/page - March 14, 2020
       
       *Mark Yamane 
-
+	* Added logo to html pages - Mar, 14,2020
+	* Reviewed functionality for the shopping cart - Mar 13, 2020
+	* Reviewed Project Page Tab - Mar 14, 2020
       
       *Connor Dibble
         * Updated tool model to include picture - Mar 10, 2020
@@ -66,7 +68,9 @@ MILESTONE 3
         * Review Shopping Cart PR - March 19, 2020 
       
       *Mark Yamane 
-      	* Added Logo to all existing html pages - Mar 16, 2020
+      	* Reviewed writing unit tests in Django - Mar 16, 2020
+	* Reviewed Navbar styling and added spacing to the logo - Mar 16, 2020
+	* Review Shopping Cart PR - Mar 21, 2020
 	
       *Connor Dibble - Scrum Master
         * Shopping Cart doesn't allow checkouts for unavailable tools - Mar 20, 2020
@@ -86,8 +90,11 @@ MILESTONE 3
          * Review Logo PR - March 23, 2020 
       
       *Mark Yamane
-        *Added spacing to logos - Mar 23, 2020
-        *Made a unit test for ToolCategory model - Mar 23, 2020 
+        
+        * Made a unit test for ToolCategory model - Mar 23, 2020 
+	* Made unit tests for each of the models on the webpage - Mar 27, 2020
+	* Reviewed new styling for webpage - Mar 28,2020
+	* Made full review for Milestone before merging into Master branch - Mar 28,2020
 	
 
       *Connor Dibble
