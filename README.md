@@ -18,6 +18,7 @@ Install Django:
 
 Pull latest code from specified branch.
 
+Run: `python manage.py migrate`
 Then run: `python manage.py runserver`
 
 # Unit Testing Instructions: #
@@ -25,6 +26,5 @@ While using the unittest.TestCase library Django automatically generates a test.
 in order to run all of the unit tests use the command `python manage.py test`
 
 # System Testing Instructions: #
-
 We will go through our use case diagrams or requirements doc and make sure that it is working as expected.
 
