@@ -25,7 +25,6 @@ MILESTONE 2
    * Pen and paper prototype - Feb 18, 2020
    
 MILESTONE 3
-   MILESTONE 3
     SPRINT 1 March 8 - 14
       *Karsten Boettcher - Scrum Master
         * Tool pictures PR review - Mar 11, 2020
@@ -89,3 +88,5 @@ MILESTONE 3
 	
       *Connor Dibble
 	* Reviewed Bug Fixes - Mar 26, 2020
+	* Updated Project page - Mar 28, 2020
+	* Reviewed style overhaul - Mar 28, 2020 
