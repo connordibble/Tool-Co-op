@@ -86,7 +86,7 @@ MILESTONE 3
         * Organized authorized/unauthorized content - Mar 28, 2020
         * Restyled checkout tab, footer, home page, history page, and a few other minor changes - Mar 28, 2020
       
-      *Tyler Green
+      *Tyler Green - Scrum Master
 	 * Add History Tab - March 23, 2020
          * Review Logo PR - March 23, 2020
 	 * Add search bar/search ability - March 27, 2020
