@@ -91,7 +91,8 @@ MILESTONE 3
       
       *Mark Yamane
         
-        * Made a unit test for ToolCategory model - Mar 23, 2020 
+        * Made a unit test for ToolCategory model - Mar 23, 2020
+	* Updated readme file to include the proper way to run our unit tests - Mar 23, 2020
 	* Made unit tests for each of the models on the webpage - Mar 27, 2020
 	* Reviewed new styling for webpage - Mar 28,2020
 	* Made full review for Milestone before merging into Master branch - Mar 28,2020
