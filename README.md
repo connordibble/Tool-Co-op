@@ -19,6 +19,7 @@ Install Django:
 Pull latest code from specified branch.
 
 Run: `python manage.py migrate`
+
 Then run: `python manage.py runserver`
 
 # Unit Testing Instructions: #
