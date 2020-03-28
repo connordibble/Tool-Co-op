@@ -35,13 +35,13 @@ MILESTONE 3
         * Minor styling adjustments - Mar 13, 2020
       
       *Tyler Green
-        * Add Carousel to front page - March 10, 2020
-          * Add Contact Us page with google maps - March 10, 2020
-          * Add Checked out tools page - March 10, 2020
-          * Add sort of styled Navbar/Footer - March 10, 2020
-          * Add Project Page Tab w/out content - March 12, 2020
-          * Add Create Tool button/page - March 14, 2020
-      
+          * Add Carousel to front page - March 10, 2020
+	  * Add Contact Us page with google maps - March 10, 2020
+	  * Add Checked out tools page - March 10, 2020
+	  * Add sort of styled Navbar/Footer - March 10, 2020
+	  * Add Project Page Tab w/out content - March 12, 2020
+	  * Add Create Tool button/page - March 14, 2020
+
       *Mark Yamane 
 	* Added logo to html pages - Mar, 14,2020
 	* Reviewed functionality for the shopping cart - Mar 13, 2020
@@ -51,7 +51,7 @@ MILESTONE 3
         * Updated tool model to include picture - Mar 10, 2020
         * Reviewed contact us page - Mar 11, 2020
         * Made shopping cart prototype branch - Mar 12, 2020
-	      * Added functionality for cart to update checked out page - Mar 12, 2020
+	* Added functionality for cart to update checked out page - Mar 12, 2020
         * Reviewed project page tab - Mar 13, 2020
         * Reviewed Overdue Tools Tab - Mar 17, 2020
         * Requested changes for tool logo - Mar 17, 2020
@@ -63,7 +63,7 @@ MILESTONE 3
         * Added content viewing authorization - Mar 21, 2020
       
       *Tyler Green
-	      * Add Overdue Tools Tab - March 16, 2020
+	* Add Overdue Tools Tab - March 16, 2020
         * Add ability to Edit a tool - March 19, 2020
         * Review Shopping Cart PR - March 19, 2020 
       
@@ -86,19 +86,18 @@ MILESTONE 3
         * Restyled checkout tab, footer, home page, history page, and a few other minor changes - Mar 28, 2020
       
       *Tyler Green
-	      * Add History Tab - March 23, 2020
+	 * Add History Tab - March 23, 2020
          * Review Logo PR - March 23, 2020 
       
       *Mark Yamane
-        
         * Made a unit test for ToolCategory model - Mar 23, 2020
 	* Updated readme file to include the proper way to run our unit tests - Mar 23, 2020
 	* Made unit tests for each of the models on the webpage - Mar 27, 2020
 	* Reviewed new styling for webpage - Mar 28,2020
 	* Made full review for Milestone before merging into Master branch - Mar 28,2020
-	
 
       *Connor Dibble
         * Reviewed Bug Fixes - Mar 26, 2020
         * Updated Project page - Mar 28, 2020
         * Reviewed style overhaul - Mar 28, 2020 
+	* Fixed naming error on homepage - Mar 28, 2020
