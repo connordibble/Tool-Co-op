@@ -28,68 +28,69 @@ MILESTONE 3
     SPRINT 1 March 8 - 14
       *Karsten Boettcher - Scrum Master
         * Tool pictures PR review - Mar 11, 2020
-	* Checked Out Tools tab PR review - Mar 11, 2020
-	* Contact Us tab PR review - Mar 11, 2020
-	* Changed global navbar styling - Mar 12, 2020
-	* Added styling to tool displays - Mar 13, 2020
-	* Minor styling adjustments - Mar 13, 2020
+        * Checked Out Tools tab PR review - Mar 11, 2020
+        * Contact Us tab PR review - Mar 11, 2020
+        * Changed global navbar styling - Mar 12, 2020
+        * Added styling to tool displays - Mar 13, 2020
+        * Minor styling adjustments - Mar 13, 2020
       
       *Tyler Green
-	* Add Carousel to front page - March 10, 2020
-   	* Add Contact Us page with google maps - March 10, 2020
-   	* Add Checked out tools page - March 10, 2020
-   	* Add sort of styled Navbar/Footer - March 10, 2020
-   	* Add Project Page Tab w/out content - March 12, 2020
-	* Add Create Tool button/page - March 14, 2020
-	* Add Overdue Tools Tab - March 16, 2020
-	* Add ability to Edit a tool - March 19, 2020
-	* Review Shopping Cart PR - March 19, 2020
-	* Add History Tab - March 23, 2020
-	* Review Logo PR - March 23, 2020
+        * Add Carousel to front page - March 10, 2020
+          * Add Contact Us page with google maps - March 10, 2020
+          * Add Checked out tools page - March 10, 2020
+          * Add sort of styled Navbar/Footer - March 10, 2020
+          * Add Project Page Tab w/out content - March 12, 2020
+          * Add Create Tool button/page - March 14, 2020
       
       *Mark Yamane 
+
       
       *Connor Dibble
         * Updated tool model to include picture - Mar 10, 2020
         * Reviewed contact us page - Mar 11, 2020
         * Made shopping cart prototype branch - Mar 12, 2020
-	* Added functionality for cart to update checked out page - Mar 12, 2020
+	      * Added functionality for cart to update checked out page - Mar 12, 2020
         * Reviewed project page tab - Mar 13, 2020
-	* Reviewed Overdue Tools Tab - Mar 17, 2020
-	* Requested changes for tool logo - Mar 17, 2020
+        * Reviewed Overdue Tools Tab - Mar 17, 2020
+        * Requested changes for tool logo - Mar 17, 2020
 	
     SPRINT 2 March 15 - 21
       *Karsten Boettcher
-	* Added employee login/logout functions - Mar 21, 2020
-	* Added backend code for possible user registration - Mar 21, 2020
-	* Added content viewing authorization - Mar 21, 2020
+        * Added employee login/logout functions - Mar 21, 2020
+        * Added backend code for possible user registration - Mar 21, 2020
+        * Added content viewing authorization - Mar 21, 2020
       
       *Tyler Green
-	* 
+	      * Add Overdue Tools Tab - March 16, 2020
+        * Add ability to Edit a tool - March 19, 2020
+        * Review Shopping Cart PR - March 19, 2020 
       
       *Mark Yamane 
-      	* 
+      	* Added Logo to all existing html pages - Mar 16, 2020
 	
       *Connor Dibble - Scrum Master
-	* Shopping Cart doesn't allow checkouts for unavailable tools - Mar 20, 2020
-	* Shopping Cart won't allow checkout of empty cart - Mar 20, 2020
-	* Quantity is added to the checked out screen and works with the shopping cart - Mar 21, 2020
-	* Displays items in cart in drop down menu - Mar 21, 2020
+        * Shopping Cart doesn't allow checkouts for unavailable tools - Mar 20, 2020
+        * Shopping Cart won't allow checkout of empty cart - Mar 20, 2020
+        * Quantity is added to the checked out screen and works with the shopping cart - Mar 21, 2020
+        * Displays items in cart in drop down menu - Mar 21, 2020
 	
     SPRINT 3 March 22 - 28
       *Karsten Boettcher
-	* Tool check-in PR review - Mar 24, 2020
-	* Reviewed several PRs - Mar 27, 2020
-	* Organized authorized/unauthorized content - Mar 28, 2020
-	* Restyled checkout tab, footer, home page, history page, and a few other minor changes - Mar 28, 2020
+        * Tool check-in PR review - Mar 24, 2020
+        * Reviewed several PRs - Mar 27, 2020
+        * Organized authorized/unauthorized content - Mar 28, 2020
+        * Restyled checkout tab, footer, home page, history page, and a few other minor changes - Mar 28, 2020
       
       *Tyler Green
-	* 
+	      * Add History Tab - March 23, 2020
+         * Review Logo PR - March 23, 2020 
       
-      *Mark Yamane 
-      	* 
+      *Mark Yamane
+        *Added spacing to logos - Mar 23, 2020
+        *Made a unit test for ToolCategory model - Mar 23, 2020 
 	
+
       *Connor Dibble
-	* Reviewed Bug Fixes - Mar 26, 2020
-	* Updated Project page - Mar 28, 2020
-	* Reviewed style overhaul - Mar 28, 2020 
+        * Reviewed Bug Fixes - Mar 26, 2020
+        * Updated Project page - Mar 28, 2020
+        * Reviewed style overhaul - Mar 28, 2020 
