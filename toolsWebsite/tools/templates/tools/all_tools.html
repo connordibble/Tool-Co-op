@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block alltools_active %} nav-item active {% endblock %}
+
+{% block content %}
+<main role="main">
+    <div class="container mt-3">
+        <div class="pull-right">
+            {% if user.is_authenticated %}
+                <a class="btn btn-outline-success my-2 my-sm-0 " href="/tools/create_category">+ Create</a>
+            {% endif %}
+        </div>
+        <h1>Tool Inventory</h1>
+        <form action="/tools/all_tools" method="post" class="form-inline my-2 my-lg-0">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        {% if search %}
+            Showing results for "{{ search }}"
+        {% endif %}
+        <div class="tool-grid">
+            {% if tools_list %}
+              {% for category in tools_list %}
+                <div class="tool-container">
+                  {% if user.is_authenticated %}
+                      <a href="{% url 'toolpage' category.id %}">
+                        <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                        <h4>{{ category.type }}</h4>
+                        Available: {{ category.available }}
+                        <br>
+                        Checked Out: {{ category.unavailable }}
+                        <br>
+                        Rental fee: ${{ category.price }}
+                        <br><br>
+                      </a>
+                  {% else %}
+                      <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                        <h4>{{ category.type }}</h4>
+                        Available: {{ category.available }}
+                        <br>
+                        Checked Out: {{ category.unavailable }}
+                        <br>
+                        Rental fee: ${{ category.price }}
+                        <br><br>
+                  {% endif %}
+                  {% if category.available > 0 and 5 > inCart %}
+                    <a href="addToCart/{{category.id}}" style="text-align: center;">
+                      <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
+                        Add to Cart
+                      </button>
+                    </a>
+                  {% else %}
+                    <b>Unavailable</b>
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+            {% else %}
+                <p>No tools are in the database.</p>
+            {% endif %}
+        </div>
+  </div>
+</main>
+{% endblock %}

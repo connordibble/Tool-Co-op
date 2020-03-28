@@ -18,26 +18,33 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <img height="40px" width="auto" class="logo" src="{% static 'images/ToolShed.jpg'%}"/>
-        <a class="navbar-brand" href="/tools/">Tool Co-op</a>
+        <a class="navbar-brand" href="/tools/">
+          <img height="40px" width="auto" class="logo" src="{% static 'images/ToolShed.jpg'%}"/>Tool Co-op
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="{% block alltools_active %} nav-item {% endblock %}">
-              <a class="nav-link" href="/tools/">All Tools</a>
+              <a class="nav-link" href="/tools/all_tools">All Tools</a>
             </li>
-            <li class="{% block dropdown_active %} nav-item dropdown {% endblock %}">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Tools
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/tools/available">Available</a>
-                <a class="dropdown-item" href="/tools/checked_out">Checked Out</a>
-                <a class="dropdown-item" href="/tools/overdue">Overdue</a>
-              </div>
-            </li>
+            {% if not user.is_authenticated %}
+              <li class="{% block availabletools_active %} nav-item {% endblock %}">
+                <a class="nav-link" href="/tools/available">Available Tools</a>
+              </li>
+            {% else %}
+              <li class="{% block dropdown_active %} nav-item dropdown {% endblock %}">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Tools
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/tools/available">Available</a>
+                  <a class="dropdown-item" href="/tools/checked_out">Checked Out</a>
+                  <a class="dropdown-item" href="/tools/overdue">Overdue</a>
+                </div>
+              </li>
+            {% endif %}
             <li class="{% block projects_active %} nav-item {% endblock %}">
               <a class="nav-link" href="/tools/project">Projects</a>
             </li>
@@ -53,28 +60,29 @@
                     <i class="fa fa-cart-arrow-down"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
-                    <b>Items in Cart</b>
+                    <div style="padding-left: 8px;"><b>Items in Cart</b></div>
                     <div id="cartDropdownItems">
-                      <div class="tool-container">
                       {% if cart %}
                         {% for tool in cart %}
-                          <b>Tool:</b> {{ tool.tool }}
-                          <b>Quantity:</b> {{ tool.quantity }}
-                          <br><br>
+                          <div class="cart-container">
+                            <div class="cart-image">
+                              <img height="50px" width="50px" src="{{ tool.tool_image }}" />
+                            </div>
+                            <div class="cart-item"><b>Tool:</b> {{ tool.tool }}</div>
+                            <div class="cart-quantity"><b>Quantity:</b> {{ tool.quantity }}</div>
+                          </div>
                         {% endfor %}
-
+                        <div class="checkout-button">
+                          <a href="/tools/checkout">
+                            <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
+                              Check Out
+                            </button>
+                          </a>
+                        </div>
                       {% else %}
-                          <b>CART EMPTY</b>
+                        <div class="empty-cart">Your shopping cart is empty.</div>
                       {% endif %}
-                      </div>
                     </div>
-                    {% if cart %}
-                      <a href="/tools/checkout">
-                        <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
-                          Check Out
-                        </button>
-                      </a>
-                    {% endif %}
                   </div>
                 </li>
               </ul>
@@ -102,15 +110,44 @@
 <!-- Main content of page will render here -->
 {% endblock %}
 
-    <!-- Footer Start -->
-    <footer class="footer navbar-dark bg-dark mt-auto py-3">
-      <div class="container text-center">
-        <h5 class="mb-1 text-muted">Have Questions? <a class="btn btn-outline-info my-2 my-sm-0 " href="/tools/contact">Contact Us!</a></h5>
+
+  <!-- Footer Start -->
+  <footer class="footer mt-auto pt-4 pb-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-xs-12 about-company">
+          <div class="logo-heading">
+            <img class="rounded mx-auto d-block" height="40px" width="auto" src="{% static 'images/ToolShed.jpg'%}"/>
+            <h3>&nbsp Have Questions?</h3>
+          </div>
+          <p class="pr-5 text-white-50 mb-0">Mon - Sat: 8 a.m. - 10 p.m. (MST)</p>
+          <p class="pr-5 text-white-50 mb-2">Sun: 8 a.m. - 9 p.m. (MST)</p>
+          <p class="pr-5 text-white-50"><a class="btn btn-outline-info my-2 my-sm-0 " href="/tools/contact">Contact Us!</a></h5></p>
+        </div>
+        <div class="col-lg-3 col-xs-12 links">
+          <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+            <ul class="m-0 p-0">
+              <li>- <a href="/tools/">Home</a></li>
+              <li>- <a href="/tools/all_tools">All Tools</a></li>
+              <li>- <a href="/tools/project">Projects</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-xs-12 location">
+          <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+          <p class="mb-0">1400 Old Main Hill</p>
+          <p>Logan, Utah 84322</p>
+          <p class="mb-0"><i class="fa fa-phone mr-3"></i>(435) 797-1000</p>
+          <p><i class="fa fa-envelope-o mr-3"></i>info@tool-coop.com</p>
+        </div>
       </div>
-      <img class="rounded mx-auto d-block" height="40px" width="auto" src="{% static 'images/ToolShed.jpg'%}"/>
-      <div class="footer-copyright text-center py-3 text-muted">© 2020 Copyright</div>
-    </footer>
-    <!-- Footer End -->
+      <div class="row mt-2">
+        <div class="col copyright">
+          <p class=""><small class="text-white-50">© 2020 Tool Shed. All Rights Reserved.</small></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
