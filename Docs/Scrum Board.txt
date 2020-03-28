@@ -82,6 +82,7 @@ MILESTONE 3
       *Karsten Boettcher
         * Tool check-in PR review - Mar 24, 2020
         * Reviewed several PRs - Mar 27, 2020
+	* Added project to Project page - Mar 27, 2020
         * Organized authorized/unauthorized content - Mar 28, 2020
         * Restyled checkout tab, footer, home page, history page, and a few other minor changes - Mar 28, 2020
       
