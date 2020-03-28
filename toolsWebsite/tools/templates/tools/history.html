@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block history_active %} nav-item active {% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="container">
+    <br>
+    <h1 style="text-align: center;">Transaction History</h1>
+    {% if history %}
+      {% for transaction in history %}
+        <h4>{{ transaction.customer }} {{transaction.state}}</h4>
+        <p>Date Bought: {{ transaction.date_bought|date:"M d, Y" }}</p>
+        <p>Total Price: ${{transaction.price}}</p>
+        <p>Tools Rented: {{transaction.tools}}</p>
+      {% endfor %}
+    {% else %}
+      <p>No Transactions made yet</p>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

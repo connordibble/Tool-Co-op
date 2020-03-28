@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block dropdown_active %} nav-item dropdown active {% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="container">
+    <br>
+    <h1>Overdue Tools</h1>
+    <div class="tool-grid">
+    {% if overdue_tools %}
+      {% for tool in overdue_tools %}
+        <div class="tool-container">
+          <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image }}"/>
+          <h4>{{ tool.toolCategory.type }}</h4>
+          Customer: {{ tool.buyer }}
+          <br>
+          Date Bought: {{ tool.date_bought|date:"M d, Y" }}
+          <br>
+          Date Due: {{ tool.date_due|date:"M d, Y" }}
+          <br><br>
+          <a href="checkin/{{tool.id}}" onclick="return confirm('Are you sure you want to check in this item?');" style="text-align: center;">
+            <button type="button" class="btn btn-outline-info">
+              Check In
+            </button>
+          </a>
+        </div>
+      {% endfor %}
+
+    {% else %}
+        <p>No overdue tools :)</p>
+    {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock %}

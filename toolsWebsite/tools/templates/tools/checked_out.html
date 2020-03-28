@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block dropdown_active %} nav-item dropdown active {% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="container">
+    <br>
+    <h1>Checked out Tools</h1>
+
+    <div class="tool-grid">
+      {% if checkedOut_tools %}
+        {% for tool in checkedOut_tools %}
+          <div class="tool-container">
+            <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image}}"/>
+            <h4>{{ tool.toolCategory.type }}</h4>
+            Rented: {{ tool.date_bought|date:"M d, Y" }}
+            <br>
+
+            Quantity: {{ tool.quantity }}
+            <br>
+            Due: {{ tool.date_due|date:"M d, Y" }}
+            <br>
+            Buyer: {{ tool.buyer }}
+            <br><br>
+            <a href="checkin/{{tool.id}}" onclick="return confirm('Are you sure you want to check in this item?');" style="text-align: center;">
+              <button type="button" class="btn btn-outline-info">
+                Check In
+              </button>
+            </a>
+          </div>
+        {% endfor %}
+
+      {% else %}
+          <p>No tools are checked out.</p>
+      {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock %}
