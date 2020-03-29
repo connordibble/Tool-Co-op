@@ -83,7 +83,7 @@ def edit_tool(request, tool_id):
     t.price = request.POST['price']
     t.tool_image = request.POST['img']
     t.save()
-    return redirect('index')
+    return redirect('toolpage', tool_id)
 
 
 def checkedOut(request):
