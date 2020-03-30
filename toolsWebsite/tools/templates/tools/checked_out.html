@@ -14,14 +14,13 @@
           <div class="tool-container">
             <img height="150px" width="auto" src="{{ tool.toolCategory.tool_image}}"/>
             <h4>{{ tool.toolCategory.type }}</h4>
+            Customer: {{ tool.buyer }}
+            <br>
             Rented: {{ tool.date_bought|date:"M d, Y" }}
             <br>
-
             Quantity: {{ tool.quantity }}
             <br>
             Due: {{ tool.date_due|date:"M d, Y" }}
-            <br>
-            Buyer: {{ tool.buyer }}
             <br><br>
             <a href="checkin/{{tool.id}}" onclick="return confirm('Are you sure you want to check in this item?');" style="text-align: center;">
               <button type="button" class="btn btn-outline-info">
