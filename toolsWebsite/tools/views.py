@@ -50,7 +50,7 @@ def project(request):
 
 def history(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     history = History.objects.all()[::-1]
     context = getCart()
     context['history'] = history
@@ -59,7 +59,7 @@ def history(request):
 
 def toolpage(request, tool_id):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
     context = getCart()
     context['tool'] = tool_category
@@ -68,7 +68,7 @@ def toolpage(request, tool_id):
 
 def delete_tool(request, tool_id):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     tool_category = get_object_or_404(ToolCategory, pk=tool_id)
     tool_category.delete()
     return redirect('index')
@@ -76,7 +76,7 @@ def delete_tool(request, tool_id):
 
 def edit_tool(request, tool_id):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     t = get_object_or_404(ToolCategory, pk=tool_id)
     t.type = request.POST['name']
     t.available = request.POST['quantity']
@@ -88,7 +88,7 @@ def edit_tool(request, tool_id):
 
 def checkedOut(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     tools_list = ToolCategory.objects.all()
     list = []
     due = DueDates.objects.order_by('-date_bought')
@@ -114,14 +114,14 @@ def availableTools(request):
 
 def create_category(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     context = getCart()
     return render(request, 'tools/create_category.html', context)
 
 
 def overdue(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     due_dates = DueDates.objects.order_by('-date_due')
     list = []
     for tool in reversed(due_dates):
@@ -134,7 +134,7 @@ def overdue(request):
 
 def create(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     t = ToolCategory()
     t.type = request.POST['name']
     t.available = request.POST['quantity']
@@ -146,6 +146,8 @@ def create(request):
 
 
 def checkin(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
     due = get_object_or_404(DueDates, pk=tool_id)
     due.toolCategory.available += due.quantity
     due.toolCategory.unavailable -= due.quantity
@@ -262,7 +264,7 @@ def nuke(request):
 
 def nuke_it(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     nuke(request)
     history = History.objects.all()
     history.delete()
