@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.utils import timezone
+import smtplib
+from email.message import EmailMessage
 
 from .forms import RegisterForm
 from .models import ToolCategory, DueDates, ShoppingCart, History
@@ -41,7 +43,40 @@ def allTools(request):
 def contact(request):
     context = getCart()
     return render(request, 'tools/contact.html', context)
-
+    
+def email(request):
+    name = request.POST['name']
+    lastname = request.POST['surname']
+    email = request.POST['email']
+    subject = request.POST['need']
+    message = request.POST['message']
+    
+    # toolshed gets the customer email
+    subject = f"{subject} - {email}"
+    message = f"Customer: {name} {lastname} with email: {email} sends the following message: \n\n{message}"
+    sendEmail("toolshed.software@gmail.com", subject, message)
+    
+    #send the customer an email
+    subject = "ToolShed Customer Care"
+    message = f"{name} {lastname},\n\nThank you for contacting us! We will respond shortly to help figure out your issue!"
+    sendEmail(email, subject, message)
+    
+    return redirect('index')
+    
+def sendEmail(email, subject, message):
+    msg = EmailMessage()
+    msg.set_content(message)
+    msg['Subject'] = subject
+    msg['From'] = "toolshed.software@gmail.com"
+    msg['To'] = email
+    
+    s = smtplib.SMTP()
+    s.connect('smtp.gmail.com', '587')
+    s.ehlo()
+    s.starttls()
+    s.login("toolshed.software@gmail.com", "SoftwareDev3450")
+    s.send_message(msg)
+    s.quit()
 
 def project(request):
     context = getCart()
