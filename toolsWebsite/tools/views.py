@@ -1,5 +1,5 @@
 from random import randint
-import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -125,7 +125,7 @@ def overdue(request):
     due_dates = DueDates.objects.order_by('-date_due')
     list = []
     for tool in reversed(due_dates):
-        if tool.date_due < timezone.now():
+        if tool.date_due < (timezone.now() - timedelta(1)):
             list.append(tool)
     context = getCart()
     context['overdue_tools'] = list
@@ -173,10 +173,8 @@ def checkout(request):
         due = DueDates()
         due.toolCategory = cart.toolCategory
         due.quantity = cart.quantity
-        due.date_bought = datetime.datetime.now()
-        due.date_due = datetime.datetime(2020, randint(1, 12), randint(1, 28))
-        # due.date_bought = datetime.datetime.now()
-        # due.date_due = datetime.datetime.now()
+        due.date_bought = datetime.now()
+        due.date_due = datetime(2020, randint(1, 12), randint(1, 28))
         due.buyer = "Connor"
         due.save()
 
@@ -249,8 +247,8 @@ def init(request):
         for j in range(tool.unavailable):
             due = DueDates()
             due.toolCategory = tool
-            due.date_bought = datetime.datetime(2019, randint(1, 12), randint(1, 28))
-            due.date_due = datetime.datetime(2020, randint(1, 12), randint(1, 28))
+            due.date_bought = datetime(2019, randint(1, 12), randint(1, 28))
+            due.date_due = datetime(2020, randint(1, 12), randint(1, 28))
             due.buyer = "Tyler"
             due.save()
 
