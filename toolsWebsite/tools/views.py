@@ -234,6 +234,16 @@ def checkout_confirmation(request):
         total += cart.quantity * cart.toolCategory.price
     context['total'] = total
     return render(request, 'tools/checkout_confirmation.html', context)
+    
+def remove_tool_from_cart(request, tool_id):
+    tool = get_object_or_404(ShoppingCart, pk=tool_id)
+    for cat in ToolCategory.objects.all():
+        if tool.tool == cat.type:
+            cat.available += tool.quantity
+            cat.unavailable -= tool.quantity
+            cat.save()
+    tool.delete()
+    return redirect('checkout_confirmation')
 
 
 def checkout_confirmed(request):

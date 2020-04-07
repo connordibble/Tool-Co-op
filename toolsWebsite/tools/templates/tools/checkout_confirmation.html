@@ -18,6 +18,8 @@
             <b>Quantity:</b> {{ tool.quantity }}
             <br>
             <b>Price:</b> ${{ tool.toolCategory.price }}
+            <br>
+            <a href="{% url 'remove_tool_from_cart' tool.id %}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to remove this item from the cart?');">Remove</a>
             </div>
         {% endfor %}
         <br>
