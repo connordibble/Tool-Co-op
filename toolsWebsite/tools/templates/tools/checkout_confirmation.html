@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <br>
+    <br>
+    <h1 style="text-align: center;">Checkout Confirmation</h1>
+    <br>
+    {% if cart %}
+        {% for tool in cart %}
+            <div style="border-top: 3px solid #A9A9A9;">
+            <img height="150px" width="auto" src="{{ tool.tool_image }}" />
+            <br>
+            <b>Tool:</b> {{ tool.tool }}
+            <br>
+            <b>Quantity:</b> {{ tool.quantity }}
+            <br>
+            <b>Price:</b> ${{ tool.toolCategory.price }}
+            </div>
+        {% endfor %}
+        <br>
+        <b style="font-size: large; border-top: 3px solid #000000;">Total: ${{ total }}</b>
+        <div class="checkout-button">
+        <button id="checkoutButton"class="btn btn-outline-info my-2 my-sm-0 right" onclick="opencloseForm()">Check Out</button>
+        <br>
+        <div class="form-popup" id="checkoutForm">
+          <form action="/tools/checkout" method="post" class="form-container">
+            <h2 style="text-align: center;">Check Out</h2>
+            {% csrf_token %}
+            <label for="form_name">Customer Name</label>
+            <input id="form_name" type="text" name="name" class="form-control" placeholder="Customer" required="required" data-error="Customer name is required.">
+            <br>
+            <input type="submit" class="btn btn-success btn-send" value="Checkout">
+          </form>
+        </div>
+        <script>
+            let open = true;
+            document.getElementById("checkoutForm").style.display = "none";
+            function opencloseForm() {
+                if (open) {
+                    document.getElementById("checkoutForm").style.display = "block";
+                    document.getElementById("checkoutButton").textContent = "Close Check Out";
+                    open = false;
+                } else {
+                    document.getElementById("checkoutForm").style.display = "none";
+                    document.getElementById("checkoutButton").textContent = "Check Out";
+                    open = true
+                }
+            }
+        </script>
+        </div>
+      {% else %}
+        <div class="empty-cart">Your shopping cart is empty.</div>
+      {% endif %}
+  </div>
+  <br>
+</main>
+{% endblock %}

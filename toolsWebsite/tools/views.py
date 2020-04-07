@@ -9,6 +9,8 @@ from email.message import EmailMessage
 from .forms import RegisterForm
 from .models import ToolCategory, DueDates, ShoppingCart, History
 
+def day_in_a_week():
+    return datetime.now() + timedelta(7)
 
 def getCart():
     cart = ShoppingCart.objects.all()
@@ -209,8 +211,8 @@ def checkout(request):
         due.toolCategory = cart.toolCategory
         due.quantity = cart.quantity
         due.date_bought = datetime.now()
-        due.date_due = datetime(2020, randint(1, 12), randint(1, 28))
-        due.buyer = "Connor"
+        due.date_due = day_in_a_week() # we can change this if we want
+        due.buyer = request.POST['name']
         due.save()
 
         history.customer = due.buyer
@@ -224,6 +226,14 @@ def checkout(request):
     history.state = history.CHECKOUT
     history.save()
     return redirect('checkout_confirmed')
+    
+def checkout_confirmation(request):
+    context = getCart()
+    total = 0
+    for cart in ShoppingCart.objects.all():
+        total += cart.quantity * cart.toolCategory.price
+    context['total'] = total
+    return render(request, 'tools/checkout_confirmation.html', context)
 
 
 def checkout_confirmed(request):
