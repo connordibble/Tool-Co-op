@@ -16,6 +16,8 @@ def getCart():
     cart = ShoppingCart.objects.all()
     return {'cart': cart}
 
+def num_days_since_today(date):
+    return (datetime.now(timezone.utc) - date).days
 
 def index(request):
     context = getCart()
@@ -163,6 +165,7 @@ def overdue(request):
     list = []
     for tool in reversed(due_dates):
         if tool.date_due < (timezone.now() - timedelta(1)):
+            tool.fee = num_days_since_today(tool.date_due)
             list.append(tool)
     context = getCart()
     context['overdue_tools'] = list
@@ -193,13 +196,28 @@ def checkin(request, tool_id):
     history = History()
     history.customer = due.buyer
     history.date_bought = due.date_bought
-    history.price = 0  # We could put late fees here if we want
+    fee = num_days_since_today(due.date_due) * due.quantity
+    if fee < 0:
+        fee = 0
+    history.price = fee
     history.tools = due.toolCategory.type
     history.state = history.CHECKIN
     history.save()
 
     due.delete()
-    return redirect('index')
+    return redirect('checkedOut')
+    
+def checkin_confirmation(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    due = get_object_or_404(DueDates, pk=tool_id)
+    context = getCart()
+    context['dueDates'] = due
+    fee = num_days_since_today(due.date_due) * due.quantity
+    if fee < 0:
+        fee = 0
+    context['fee'] = fee
+    return render(request, "checkin_confirmation.html", context)
 
 
 def checkout(request):

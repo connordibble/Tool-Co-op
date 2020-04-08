@@ -20,8 +20,10 @@
           Quantity: {{ tool.quantity }}
           <br>
           Due: {{ tool.date_due|date:"M d, Y" }}
+          <br>
+          Late Fee: ${{ tool.fee }}.00
           <br><br>
-          <a href="checkin/{{tool.id}}" onclick="return confirm('Are you sure you want to check in this item?');" style="text-align: center;">
+          <a href="checkin_confirmation/{{tool.id}}" style="text-align: center;">
             <button type="button" class="btn btn-outline-info">
               Check In
             </button>

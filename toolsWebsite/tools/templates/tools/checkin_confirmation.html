@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+  <div style="text-align: center;">
+    <br>
+    <br>
+    <h1>Check In Confirmation for {{ dueDates.buyer }}</h1>
+    <br>
+    <div class="tool-container">
+        <img height="150px" width="auto" src="{{ dueDates.toolCategory.tool_image}}"/>
+        <h4>{{ dueDates.toolCategory.type }}</h4>
+        Rented: {{ dueDates.date_bought|date:"M d, Y" }}
+        <br>
+        Quantity: {{ dueDates.quantity }}
+        <br>
+        Due: {{ dueDates.date_due|date:"M d, Y" }}
+        <br><br>
+        <b>Fee: ${{ fee }}.00</b>
+    </div>
+    <br><br>
+    {% if fee > 0 %}
+        <b>Customer must pay their late fee of ${{fee}}.00 before checking in.</b>
+        <br><br>
+    {% endif %}
+    <a href="/tools/checkin/{{dueDates.id}}" style="text-align: center;">
+      <button type="button" class="btn btn-outline-info">
+        Confirm Check In
+      </button>
+    </a>
+  </div>
+  <br>
+</main>
+{% endblock %} 
