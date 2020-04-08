@@ -34,7 +34,7 @@ def allTools(request):
         filter = request.POST['search']
         filter_list = []
         for tool in tools_list:
-            if filter in tool.type:
+            if filter.lower() in tool.type.lower():
                 filter_list.append(tool)
         context['tools_list'] = filter_list
         context['search'] = filter
@@ -252,6 +252,16 @@ def checkout_confirmation(request):
         total += cart.quantity * cart.toolCategory.price
     context['total'] = total
     return render(request, 'tools/checkout_confirmation.html', context)
+    
+def remove_tool_from_cart(request, tool_id):
+    tool = get_object_or_404(ShoppingCart, pk=tool_id)
+    for cat in ToolCategory.objects.all():
+        if tool.tool == cat.type:
+            cat.available += tool.quantity
+            cat.unavailable -= tool.quantity
+            cat.save()
+    tool.delete()
+    return redirect('checkout_confirmation')
 
 
 def checkout_confirmed(request):
