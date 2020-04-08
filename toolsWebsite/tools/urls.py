@@ -7,6 +7,7 @@ urlpatterns = [
     path('index', views.index, name='index'),
     path('all_tools', views.allTools, name="all_tools"),
     path('contact', views.contact, name='contact'),
+    path('email', views.email, name='email'),
     path('checked_out', views.checkedOut, name='checkedOut'),
     path('toolpage/<int:tool_id>', views.toolpage, name='toolpage'),
     path('delete_tool/<int:tool_id>', views.delete_tool, name='delete_tool'),
@@ -21,6 +22,8 @@ urlpatterns = [
     path('project', views.project, name='project'),
     path('checkout', views.checkout, name='checkout'),
     path('checkout_confirmed', views.checkout_confirmed, name='checkout_confirmed'),
+    path('checkout_confirmation', views.checkout_confirmation, name='checkout_confirmation'),
     path('addToCart/<int:category_id>/', views.addToCart, name='addToCart'),
     path('checkin/<int:tool_id>', views.checkin, name='checkin'),
+    path('remove_tool_from_cart/<int:tool_id>', views.remove_tool_from_cart, name='remove_tool_from_cart'),
 ]

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'tools/styles.css' %}" type="text/css"/>
     <script src="https://use.fontawesome.com/fbcbee1ea9.js"></script>
     <title>{% block title %} Tool Co-op {% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
   </head>
 
   <body class="d-flex flex-column">
@@ -70,10 +71,11 @@
                             </div>
                             <div class="cart-item"><b>Tool:</b> {{ tool.tool }}</div>
                             <div class="cart-quantity"><b>Quantity:</b> {{ tool.quantity }}</div>
+                            <div ><b>${{ tool.toolCategory.price }}</b></div>
                           </div>
                         {% endfor %}
                         <div class="checkout-button">
-                          <a href="/tools/checkout">
+                          <a href="/tools/checkout_confirmation">
                             <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
                               Check Out
                             </button>
