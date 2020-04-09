@@ -318,7 +318,7 @@ def init(request):
     prices = {'hammer': 2, 'wrench': 2, 'screwdriver': 2, 'level': 2, 'drill': 5}
     for i in range(len(categories)):
         tool = ToolCategory(type=categories[i],
-                            available=3,
+                            available=10,
                             unavailable=randint(1, 5),
                             price=prices.get(categories[i]),
                             tool_image=images.get(categories[i]))
