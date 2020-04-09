@@ -21,6 +21,12 @@ def num_days_since_today(date):
 
 def index(request):
     context = getCart()
+    tools_list = ToolCategory.objects.all()
+    list = []
+    for tool in tools_list:
+        if tool.available > 0:
+            list.append(tool.type)
+    context['available_tools'] = list
     return render(request, 'tools/index.html', context)
 
 
@@ -312,7 +318,7 @@ def init(request):
     prices = {'hammer': 2, 'wrench': 2, 'screwdriver': 2, 'level': 2, 'drill': 5}
     for i in range(len(categories)):
         tool = ToolCategory(type=categories[i],
-                            available=10,
+                            available=3,
                             unavailable=randint(1, 5),
                             price=prices.get(categories[i]),
                             tool_image=images.get(categories[i]))

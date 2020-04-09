@@ -25,33 +25,46 @@
                 <div class="tool-container">
                   {% if user.is_authenticated %}
                       <a href="{% url 'toolpage' category.id %}">
-                        <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                        {% if category.available > 0 and 5 > inCart %}
+                          <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                        {% else %}
+                            <img height="150px" width="auto" src="{{ category.tool_image }}" style="filter: grayscale(100%);" />
+                        {% endif %}
                         <h4>{{ category.type }}</h4>
                         Available: {{ category.available }}
                         <br>
                         Checked Out: {{ category.unavailable }}
                         <br>
                         Rental fee: ${{ category.price }}
-                        <br><br>
                       </a>
                   {% else %}
-                      <img height="150px" width="auto" src="{{ category.tool_image }}"/>
+                    {% if category.available > 0 and 5 > inCart %}
+                        <img height="150px" width="auto" src="{{ category.tool_image }}" />
                         <h4>{{ category.type }}</h4>
                         Available: {{ category.available }}
                         <br>
                         Checked Out: {{ category.unavailable }}
                         <br>
                         Rental fee: ${{ category.price }}
-                        <br><br>
+                        <br>
+                    {% else %}
+                        <img height="150px" width="auto" src="{{ category.tool_image }}" style="filter: grayscale(100%);" />
+                        <h4>{{ category.type }}</h4>
+                        Available: {{ category.available }}
+                        <br>
+                        Checked Out: {{ category.unavailable }}
+                        <br>
+                        <div style="text-decoration: line-through;">Rental fee: ${{ category.price }}</div>
+                    {% endif %}
                   {% endif %}
                   {% if category.available > 0 and 5 > inCart %}
-                    <a href="addToCart/{{category.id}}" style="text-align: center;">
+                    <a href="addToCart/{{category.id}}" style="text-align: center; margin-top: 8px;">
                       <button class="btn btn-outline-info my-2 my-sm-0 right shoppingDropdownButton">
                         Add to Cart
                       </button>
                     </a>
                   {% else %}
-                    <b>Unavailable</b>
+                    <p style="font-weight: bold; text-align: center; padding-top: 18px;">Unavailable</p>
                   {% endif %}
                 </div>
               {% endfor %}
