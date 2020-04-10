@@ -6,7 +6,7 @@ MILESTONE 2
    * Made a basic model for a tool and created an init view - Feb 14 2020
    * Updated Model and init view to contain price.  Made init view redirect to index page - Feb 18 2020
    * Reviewed low-fidelity prototype, available tools page - Feb 20 2020
-   * Added functionality to pagesdisplay a message if database isn't present - Feb 20 2020
+   * Added functionality to pages to display a message if database isn't present - Feb 20 2020
    * Added Screen Recording of website/database prototype - Feb 21 2020
 * Tyler Green
    * Activity Diagram - Feb. 11, 2020
