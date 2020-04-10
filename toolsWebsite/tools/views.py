@@ -21,6 +21,12 @@ def num_days_since_today(date):
 
 def index(request):
     context = getCart()
+    tools_list = ToolCategory.objects.all()
+    list = []
+    for tool in tools_list:
+        if tool.available > 0:
+            list.append(tool.type)
+    context['available_tools'] = list
     return render(request, 'tools/index.html', context)
 
 
