@@ -104,3 +104,21 @@ MILESTONE 3
         * Updated Project page - Mar 28, 2020
         * Reviewed style overhaul - Mar 28, 2020 
 	* Fixed naming error on homepage - Mar 28, 2020
+
+MILESTONE 4
+* Connor Dibble
+   * 
+   
+* Tyler Green
+   * 
+   
+* Karsten Boettcher
+   * Approved various PRs - Mar 30, 2020
+   * Fixed styling on the checkout cart dropdown - Apr 6, 2020
+   * Styled the checkout confirmation page - Apr 8, 2020
+   * Greyed out tools if they're unavailabe - Apr 8, 2020
+   * Styled the history page - Apr 10, 2020
+   
+* Mark Yamane
+   * 
+   
