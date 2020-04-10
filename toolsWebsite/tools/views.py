@@ -1,5 +1,5 @@
 from random import randint
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -208,6 +208,7 @@ def checkin(request, tool_id):
     history.price = fee
     history.tools = due.toolCategory.type
     history.state = history.CHECKIN
+    history.date_returned = datetime.now()
     history.save()
 
     due.delete()
@@ -250,7 +251,8 @@ def checkout(request):
     history.state = history.CHECKOUT
     history.save()
     return redirect('checkout_confirmed')
-    
+
+
 def checkout_confirmation(request):
     context = getCart()
     total = 0
@@ -258,7 +260,8 @@ def checkout_confirmation(request):
         total += cart.quantity * cart.toolCategory.price
     context['total'] = total
     return render(request, 'tools/checkout_confirmation.html', context)
-    
+
+
 def remove_tool_from_cart(request, tool_id):
     tool = get_object_or_404(ShoppingCart, pk=tool_id)
     for cat in ToolCategory.objects.all():

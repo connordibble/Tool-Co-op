@@ -6,14 +6,50 @@
 <main role="main">
   <div class="container">
     <br>
-    <h1 style="text-align: center;">Transaction History</h1>
+    <h1>Transaction History</h1>
+    <div class="line-break"></div>
     {% if history %}
+      <div class="history-title">Checked In</div>
+      <table class="history-table">
+        <tr>
+          <th>Name</th>
+          <th>Placed On</th>
+          <th>Returned</th>
+          <th>Total Charge</th>
+          <th>Tools Returned</th>
+        </tr>
       {% for transaction in history %}
-        <h4>{{ transaction.customer }} {{transaction.state}}</h4>
-        <p>Date Bought: {{ transaction.date_bought|date:"M d, Y" }}</p>
-        <p>Total Price: ${{transaction.price}}</p>
-        <p>Tools Rented: {{transaction.tools}}</p>
+        {% if transaction.state == "Checked In" %}
+            <tr>
+              <td style="text-transform: capitalize;">{{ transaction.customer }}</td>
+              <td>{{ transaction.date_bought|date:"M d, Y" }}</td>
+              <td>{{ transaction.date_returned|date:"M d, Y" }}</td>
+              <td>${{transaction.price}}</td>
+              <td style="text-transform: capitalize;">{{transaction.tools}}</td>
+            </tr>
+        {% endif %}
       {% endfor %}
+      </table>
+
+      <div class="history-title">Checked Out</div>
+      <table class="history-table">
+        <tr>
+          <th>Name</th>
+          <th>Placed On</th>
+          <th>Total Charge</th>
+          <th>Tools Rented</th>
+        </tr>
+      {% for transaction in history %}
+        {% if transaction.state == "Checked Out" %}
+            <tr>
+              <td style="text-transform: capitalize;">{{ transaction.customer }}</td>
+              <td>{{ transaction.date_bought|date:"M d, Y" }}</td>
+              <td>${{transaction.price}}</td>
+              <td style="text-transform: capitalize;">{{transaction.tools}}</td>
+            </tr>
+        {% endif %}
+      {% endfor %}
+      </table>
     {% else %}
       <p>No Transactions made yet</p>
     {% endif %}

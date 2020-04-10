@@ -140,6 +140,7 @@ main .container {
 
 .checkout-price {
     float: right;
+    text-align: right;
     margin: 10px;
     font-size: 18px;
 }
@@ -220,6 +221,32 @@ main .container {
 .dropdown-menu {
     margin-bottom: 15px;
 }
+
+.history-title {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 3px;
+}
+
+.history-table {
+  border-collapse: collapse;
+  width: 85%;
+}
+
+.history-table th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+.history-table tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+.history-table th {
+  background-color: #5c7296;
+  color: white;
+}
+
 
 
 /* FOOTER CSS */
