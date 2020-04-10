@@ -53,8 +53,6 @@ MILESTONE 3
         * Made shopping cart prototype branch - Mar 12, 2020
 	* Added functionality for cart to update checked out page - Mar 12, 2020
         * Reviewed project page tab - Mar 13, 2020
-        * Reviewed Overdue Tools Tab - Mar 17, 2020
-        * Requested changes for tool logo - Mar 17, 2020
 	
     SPRINT 2 March 15 - 21
       *Karsten Boettcher
@@ -73,6 +71,8 @@ MILESTONE 3
 	* Review Shopping Cart PR - Mar 21, 2020
 	
       *Connor Dibble - Scrum Master
+        * Reviewed Overdue Tools Tab - Mar 17, 2020
+        * Requested changes for tool logo - Mar 17, 2020
         * Shopping Cart doesn't allow checkouts for unavailable tools - Mar 20, 2020
         * Shopping Cart won't allow checkout of empty cart - Mar 20, 2020
         * Quantity is added to the checked out screen and works with the shopping cart - Mar 21, 2020
