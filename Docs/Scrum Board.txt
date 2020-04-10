@@ -118,6 +118,7 @@ MILESTONE 4
    * Styled the checkout confirmation page - Apr 8, 2020
    * Greyed out tools if they're unavailabe - Apr 8, 2020
    * Styled the history page - Apr 10, 2020
+   * Added presentation slides - April 10, 2020
    
 * Mark Yamane
    * 
