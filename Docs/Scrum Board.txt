@@ -110,7 +110,17 @@ MILESTONE 4
    * 
    
 * Tyler Green
-   * 
+   * Fix toolpage redirect - Mar 29, 2020
+   * Fix logged out redirect - Mar 30, 2020
+   * Fix tool card on overdue and checked out - Mar 30, 2020
+   * Fix overdue tool - Mar 30, 2020
+   * Set up contact Email - Apr 1, 2020
+   * Set up check in confirmation page - Apr 2, 2020
+   * Add favicon - Apr 3, 2020
+   * Add checkout confirmation page - Apr 3, 2020
+   * Add price to shopping cart - Apr 4, 2020
+   * Add ability to remove tool from cart - Apr 7, 2020
+   * Review styling PR's - Apr 9, 2020
    
 * Karsten Boettcher
    * Approved various PRs - Mar 30, 2020
