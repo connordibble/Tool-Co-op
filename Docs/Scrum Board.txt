@@ -107,7 +107,12 @@ MILESTONE 3
 
 MILESTONE 4
 * Connor Dibble
-   * 
+   * Reviewed PR for Shopping Cart Confimration Screen Apr 4, 2020
+   * Reviewed PR for bug fixes Apr 4, 2020
+   * Reviewed PR for contact us email page Apr 4, 2020
+   * Slides for Shopping cart Apr 9, 2020
+   * Made 4 demo videos Apr 10, 2020
+   
    
 * Tyler Green
    * Fix toolpage redirect - Mar 29, 2020
