@@ -9,24 +9,38 @@
     <h1 style="text-align: center;">Checkout Confirmation</h1>
     <br>
     {% if cart %}
+        <div class="line-break"></div>
         {% for tool in cart %}
-            <div style="border-top: 3px solid #A9A9A9;">
-            <img height="150px" width="auto" src="{{ tool.tool_image }}" />
-            <br>
-            <b>Tool:</b> {{ tool.tool }}
-            <br>
-            <b>Quantity:</b> {{ tool.quantity }}
-            <br>
-            <b>Price:</b> ${{ tool.toolCategory.price }}
-            <br>
-            <a href="{% url 'remove_tool_from_cart' tool.id %}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to remove this item from the cart?');">Remove</a>
+
+            <div class="cart-container-checkout">
+                <div class="img-container">
+                    <div class="cart-image">
+                      <img height="130px" width="auto" src="{{ tool.tool_image }}" />
+                    </div>
+                </div>
+                <div class="cart-item-checkout">
+                    <b>Tool:</b> {{ tool.tool }}
+                    <br>
+                    <b>Quantity:</b> {{ tool.quantity }}
+                    <br>
+                    <a href="{% url 'remove_tool_from_cart' tool.id %}" class="btn btn-outline-danger btn-sm chkBtn" onclick="return confirm('Are you sure you want to remove this item from the cart?');">Remove</a>
+                </div>
+                <div class="checkout-price">
+                    <b>Price:</b>
+                    <br>
+                    <div style="color: #B12704;"><b>${{ tool.toolCategory.price }} x {{ tool.quantity }}</b></div>
+                </div>
+                <div style="clear: both;"></div>
+
             </div>
+            <div class="line-break"></div>
         {% endfor %}
-        <br>
-        <b style="font-size: large; border-top: 3px solid #000000;">Total: ${{ total }}</b>
-        <div class="checkout-button">
-        <button id="checkoutButton"class="btn btn-outline-info my-2 my-sm-0 right" onclick="opencloseForm()">Check Out</button>
-        <br>
+        <div class="checkout-container">
+            <div class="checkout-button">
+                <button id="checkoutButton"class="btn btn-outline-info my-2 my-sm-0 right" onclick="opencloseForm()">Check Out</button>
+            </div>
+            <div class="subtotal">Total:&nbsp<div style="color: #B12704; float: right;">${{ total }}</div></div>
+        </div>
         <div class="form-popup" id="checkoutForm">
           <form action="/tools/checkout" method="post" class="form-container">
             <h2 style="text-align: center;">Check Out</h2>
@@ -37,6 +51,7 @@
             <input type="submit" class="btn btn-success btn-send" value="Checkout">
           </form>
         </div>
+
         <script>
             let open = true;
             document.getElementById("checkoutForm").style.display = "none";
@@ -52,7 +67,6 @@
                 }
             }
         </script>
-        </div>
       {% else %}
         <div class="empty-cart">Your shopping cart is empty.</div>
       {% endif %}

@@ -47,36 +47,89 @@
         <div class="divider"></div>
       </div>
       <div class="tool-grid-3">
-        <div class="tool-container">
-              <img height="150px" width="auto" src="/static/images/hammer.jpg"/>
-              <h4>Hammer</h4>
-          <center>Rental fee: $2.00</center>
-          <a href="/tools/all_tools" style="text-align: center;">
-            <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton">
-                  View Product
-            </button>
-          </a>
-        </div>
-        <div class="tool-container">
-              <img height="150px" width="auto" src="/static/images/drill.jpg"/>
-              <h4>Drill</h4>
-          <center>Rental fee: $5.00</center>
-          <a href="/tools/all_tools" style="text-align: center;">
-            <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton">
-                  View Product
-            </button>
-          </a>
-        </div>
-        <div class="tool-container">
-              <img height="150px" width="auto" src="/static/images/wrench.jpg"/>
-              <h4>Wrench</h4>
-          <center>Rental fee: $2.00</center>
-          <a href="/tools/all_tools" style="text-align: center;">
-            <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton">
-                  View Product
-            </button>
-          </a>
-        </div>
+        {% if available_tools %}
+          {% if "hammer" in available_tools %}
+            <div class="tool-container">
+          {% else %}
+            <div class="tool-container-unavailable">
+          {% endif %}
+                <img height="150px" width="auto" src="/static/images/hammer.jpg"/>
+                <h4>Hammer</h4>
+                <div class="fee">Rental fee: $2.00</div>
+            <a href="/tools/all_tools" style="text-align: center;">
+              <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton popButton">
+                    View Product
+              </button>
+            </a>
+            <p class="unavailable-text">Unavailable</p>
+          </div>
+
+          {% if "drill" in available_tools %}
+            <div class="tool-container">
+          {% else %}
+            <div class="tool-container-unavailable">
+          {% endif %}
+                <img height="150px" width="auto" src="/static/images/drill.jpg"/>
+                <h4>Drill</h4>
+                <div class="fee">Rental fee: $5.00</div>
+            <a href="/tools/all_tools" style="text-align: center;">
+              <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton popButton">
+                    View Product
+              </button>
+            </a>
+            <p class="unavailable-text">Unavailable</p>
+          </div>
+
+          {% if "wrench" in available_tools %}
+            <div class="tool-container">
+          {% else %}
+            <div class="tool-container-unavailable">
+          {% endif %}
+                <img height="150px" width="auto" src="/static/images/wrench.jpg"/>
+                <h4>Wrench</h4>
+                <div class="fee">Rental fee: $2.00</div>
+            <a href="/tools/all_tools" style="text-align: center;">
+              <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton popButton">
+                    View Product
+              </button>
+            </a>
+            <p class="unavailable-text">Unavailable</p>
+          </div>
+        {% else %}
+            <div class="tool-container-unavailable">
+                <img height="150px" width="auto" src="/static/images/hammer.jpg"/>
+                <h4>Hammer</h4>
+                <div class="fee">Rental fee: $2.00</div>
+                <a href="/tools/all_tools" style="text-align: center;">
+                    <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton popButton">
+                        View Product
+                    </button>
+                </a>
+                <p class="unavailable-text">Unavailable</p>
+            </div>
+            <div class="tool-container-unavailable">
+                <img height="150px" width="auto" src="/static/images/drill.jpg"/>
+                <h4>Drill</h4>
+                <div class="fee">Rental fee: $5.00</div>
+                <a href="/tools/all_tools" style="text-align: center;">
+                    <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton popButton">
+                        View Product
+                    </button>
+                </a>
+                <p class="unavailable-text">Unavailable</p>
+            </div>
+            <div class="tool-container-unavailable">
+                <img height="150px" width="auto" src="/static/images/wrench.jpg"/>
+                <h4>Wrench</h4>
+                <div class="fee">Rental fee: $2.00</div>
+                <a href="/tools/all_tools" style="text-align: center;">
+                    <button class="btn btn-outline-info mt-2 my-2 right shoppingDropdownButton popButton">
+                        View Product
+                    </button>
+                </a>
+                <p class="unavailable-text">Unavailable</p>
+            </div>
+        {% endif %}
       </div>
     </div>
   </div>

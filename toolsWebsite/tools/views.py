@@ -1,5 +1,5 @@
 from random import randint
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -16,9 +16,17 @@ def getCart():
     cart = ShoppingCart.objects.all()
     return {'cart': cart}
 
+def num_days_since_today(date):
+    return (datetime.now(timezone.utc) - date).days
 
 def index(request):
     context = getCart()
+    tools_list = ToolCategory.objects.all()
+    list = []
+    for tool in tools_list:
+        if tool.available > 0:
+            list.append(tool.type)
+    context['available_tools'] = list
     return render(request, 'tools/index.html', context)
 
 
@@ -32,7 +40,7 @@ def allTools(request):
         filter = request.POST['search']
         filter_list = []
         for tool in tools_list:
-            if filter in tool.type:
+            if filter.lower() in tool.type.lower():
                 filter_list.append(tool)
         context['tools_list'] = filter_list
         context['search'] = filter
@@ -163,6 +171,7 @@ def overdue(request):
     list = []
     for tool in reversed(due_dates):
         if tool.date_due < (timezone.now() - timedelta(1)):
+            tool.fee = num_days_since_today(tool.date_due)
             list.append(tool)
     context = getCart()
     context['overdue_tools'] = list
@@ -193,13 +202,29 @@ def checkin(request, tool_id):
     history = History()
     history.customer = due.buyer
     history.date_bought = due.date_bought
-    history.price = 0  # We could put late fees here if we want
+    fee = num_days_since_today(due.date_due) * due.quantity
+    if fee < 0:
+        fee = 0
+    history.price = fee
     history.tools = due.toolCategory.type
     history.state = history.CHECKIN
+    history.date_returned = datetime.now()
     history.save()
 
     due.delete()
-    return redirect('index')
+    return redirect('checkedOut')
+    
+def checkin_confirmation(request, tool_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    due = get_object_or_404(DueDates, pk=tool_id)
+    context = getCart()
+    context['dueDates'] = due
+    fee = num_days_since_today(due.date_due) * due.quantity
+    if fee < 0:
+        fee = 0
+    context['fee'] = fee
+    return render(request, "checkin_confirmation.html", context)
 
 
 def checkout(request):
@@ -226,7 +251,8 @@ def checkout(request):
     history.state = history.CHECKOUT
     history.save()
     return redirect('checkout_confirmed')
-    
+
+
 def checkout_confirmation(request):
     context = getCart()
     total = 0
@@ -235,6 +261,17 @@ def checkout_confirmation(request):
     context['total'] = total
     return render(request, 'tools/checkout_confirmation.html', context)
     
+def remove_tool_from_cart(request, tool_id):
+    tool = get_object_or_404(ShoppingCart, pk=tool_id)
+    for cat in ToolCategory.objects.all():
+        if tool.tool == cat.type:
+            cat.available += tool.quantity
+            cat.unavailable -= tool.quantity
+            cat.save()
+    tool.delete()
+    return redirect('checkout_confirmation')
+
+
 def remove_tool_from_cart(request, tool_id):
     tool = get_object_or_404(ShoppingCart, pk=tool_id)
     for cat in ToolCategory.objects.all():

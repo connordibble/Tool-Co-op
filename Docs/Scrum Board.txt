@@ -6,7 +6,7 @@ MILESTONE 2
    * Made a basic model for a tool and created an init view - Feb 14 2020
    * Updated Model and init view to contain price.  Made init view redirect to index page - Feb 18 2020
    * Reviewed low-fidelity prototype, available tools page - Feb 20 2020
-   * Added functionality to pagesdisplay a message if database isn't present - Feb 20 2020
+   * Added functionality to pages to display a message if database isn't present - Feb 20 2020
    * Added Screen Recording of website/database prototype - Feb 21 2020
 * Tyler Green
    * Activity Diagram - Feb. 11, 2020
@@ -53,8 +53,6 @@ MILESTONE 3
         * Made shopping cart prototype branch - Mar 12, 2020
 	* Added functionality for cart to update checked out page - Mar 12, 2020
         * Reviewed project page tab - Mar 13, 2020
-        * Reviewed Overdue Tools Tab - Mar 17, 2020
-        * Requested changes for tool logo - Mar 17, 2020
 	
     SPRINT 2 March 15 - 21
       *Karsten Boettcher
@@ -73,6 +71,8 @@ MILESTONE 3
 	* Review Shopping Cart PR - Mar 21, 2020
 	
       *Connor Dibble - Scrum Master
+        * Reviewed Overdue Tools Tab - Mar 17, 2020
+        * Requested changes for tool logo - Mar 17, 2020
         * Shopping Cart doesn't allow checkouts for unavailable tools - Mar 20, 2020
         * Shopping Cart won't allow checkout of empty cart - Mar 20, 2020
         * Quantity is added to the checked out screen and works with the shopping cart - Mar 21, 2020
@@ -104,3 +104,42 @@ MILESTONE 3
         * Updated Project page - Mar 28, 2020
         * Reviewed style overhaul - Mar 28, 2020 
 	* Fixed naming error on homepage - Mar 28, 2020
+
+MILESTONE 4
+* Connor Dibble
+   * Reviewed PR for Shopping Cart Confimration Screen Apr 4, 2020
+   * Reviewed PR for bug fixes Apr 4, 2020
+   * Reviewed PR for contact us email page Apr 4, 2020
+   * Slides for Shopping cart Apr 9, 2020
+   * Made 4 demo videos Apr 10, 2020
+   
+   
+* Tyler Green
+   * Fix toolpage redirect - Mar 29, 2020
+   * Fix logged out redirect - Mar 30, 2020
+   * Fix tool card on overdue and checked out - Mar 30, 2020
+   * Fix overdue tool - Mar 30, 2020
+   * Set up contact Email - Apr 1, 2020
+   * Set up check in confirmation page - Apr 2, 2020
+   * Add favicon - Apr 3, 2020
+   * Add checkout confirmation page - Apr 3, 2020
+   * Add price to shopping cart - Apr 4, 2020
+   * Add ability to remove tool from cart - Apr 7, 2020
+   * Review styling PR's - Apr 9, 2020
+   
+* Karsten Boettcher
+   * Approved various PRs - Mar 30, 2020
+   * Fixed styling on the checkout cart dropdown - Apr 6, 2020
+   * Styled the checkout confirmation page - Apr 8, 2020
+   * Greyed out tools if they're unavailabe - Apr 8, 2020
+   * Styled the history page - Apr 10, 2020
+   * Added presentation slides - April 10, 2020
+   
+* Mark Yamane
+   * Various functionality tests - April 7, 2020
+   * Reviewed PR for Remove Item from cart - April 9, 2020
+   * Reviewed PR for Adding late fees to overdue items - April 9, 2020
+   * Reviewed PR for Checkout Confirmation - April 9,2020
+   * Added presentation slides - April 11, 2020
+   
+   
