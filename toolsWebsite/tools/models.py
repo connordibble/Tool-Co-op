@@ -30,6 +30,7 @@ class ShoppingCart(models.Model):
 class History(models.Model):
     customer = models.CharField(max_length=200)
     date_bought = models.DateTimeField()
+    date_returned = models.DateTimeField(blank=True, null=True)
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     tools = models.CharField(max_length=500)
     CHECKIN = "Checked In"
