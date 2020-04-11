@@ -11,6 +11,7 @@
     {% if cart %}
         <div class="line-break"></div>
         {% for tool in cart %}
+
             <div class="cart-container-checkout">
                 <div class="img-container">
                     <div class="cart-image">
@@ -30,6 +31,7 @@
                     <div style="color: #B12704;"><b>${{ tool.toolCategory.price }} x {{ tool.quantity }}</b></div>
                 </div>
                 <div style="clear: both;"></div>
+
             </div>
             <div class="line-break"></div>
         {% endfor %}
