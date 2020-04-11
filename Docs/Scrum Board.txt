@@ -131,5 +131,10 @@ MILESTONE 4
    * Added presentation slides - April 10, 2020
    
 * Mark Yamane
-   * 
+   * Various functionality tests - April 7, 2020
+   * Reviewed PR for Remove Item from cart - April 9, 2020
+   * Reviewed PR for Adding late fees to overdue items - April 9, 2020
+   * Reviewed PR for Checkout Confirmation - April 9,2020
+   * Added presentation slides - April 11, 2020
+   
    
